@@ -1,0 +1,746 @@
+%------------------------------------------------------------
+%	Anexo 1
+%------------------------------------------------------------
+
+\chapter{Código del Buscador Gavilán}
+\label{Anexo1}
+
+%------------------------------------------------------------
+%	Web Scraper
+%------------------------------------------------------------
+
+\section{Web Scraper}
+\label{A1Anexo}
+
+\begin{tcolorbox}[colback=white!25!white,colframe=blue]
+  \begin{minted}{python}
+import requests
+from bs4 import BeautifulSoup
+
+class WebScraper:
+  """
+  Aplicador de Web Scraping para obtener el contenido de una 
+  página web a partir de su URL.
+  """
+
+  def __init__(self, url):
+    """
+    Crea un nuevo web scraper
+    Parámetro
+    url -- url semilla de donde comenzar la búsqueda
+    """
+    self.url = url
+
+    # Obtención del contenido de la url
+    answer = requests.get(url)
+    soup = BeautifulSoup(answer.text)
+
+    # Lista de párrafos
+    self.container_text = soup.find_all('p')
+
+    # Contador de párrafo actual
+    self.current = -1
+    
+  def has_next(self):
+    """
+    Verifica si quedan párrafos por leer.
+    """
+    return self.current+1 != len(self.container_text)
+  \end{minted}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white!25!white,colframe=blue]
+  \begin{minted}{python}
+  def next(self):
+    """
+    Regresa el párrafo actual de lectura
+    """
+    self.current += 1
+        
+    while self.has_next() and len(self.container_text[self.current].text)<40:
+      self.current += 1
+        
+    try:
+      return self.container_text[self.current].text 
+    except:
+      return "Lo siento, no hay más párrafos por leer."
+    
+  def current_info(self):
+    """
+    Regresa el puntero al párrafo actual
+    """
+    if self.current != -1:
+      return self.container_text[self.current].text
+    else:
+      return "Lo siento, no hay más párrafos por leer."
+  \end{minted}
+\end{tcolorbox}
+
+Donde:
+
+\begin{itemize}
+  \item \textbf{Constructor.} La función que construye una nueva instancia de WebScraper, recibe como parámetro la url de la cuál se extraerán los datos. En el cuerpo de la función se crea una nueva instancia de BeautifulSoup y se obtienen todos los párrafos contenidos en el sitio.
+  \item \textbf{has\_next.} Verifica si hay párrafos por recorrer en el sitio. Regresa \texttt{true} si existen párrafos y \texttt{false} en caso de haber recorrido todos los párrafos.
+  \item \textbf{next.} Obtiene el párrafo seguido del párrafo actual en el recorrido.
+  \item \textbf{current\_info.} Devuelve el párrafo actual del recorrido.
+\end{itemize}
+
+%------------------------------------------------------------
+%	LaunchRequestHandler
+%------------------------------------------------------------
+
+\section{LaunchRequestHandler}
+\label{A2Anexo}
+
+\begin{tcolorbox}[colback=white!25!white,colframe=blue]
+  \begin{minted}{python}
+class LaunchRequestHandler(AbstractRequestHandler):
+  """Handler for Skill Launch."""
+  def can_handle(self, handler_input):
+    # type: (HandlerInput) -> bool
+
+    return ask_utils.is_request_type("LaunchRequest")(handler_input)
+
+  def handle(self, handler_input):
+    # type: (HandlerInput) -> Response
+        
+    speak_output = "Bienvenido al buscador gavilán. Te ayudaré a investigar"+ 
+      "información de cualquier tema que desees. Puedes decir quiero saber sobre."+
+      "Para comenzar con la investigación. ¿Sobre qué tema te gustaría investigar?"
+    response_builder = handler_input.response_builder
+        
+    global help_id
+    help_id = 0
+
+    return response_builder.speak(speak_output).ask(speak_output).response
+  \end{minted}
+\end{tcolorbox}
+
+%------------------------------------------------------------
+%	CancelOrStopIntentHandler
+%------------------------------------------------------------
+
+\section{CancelOrStopIntentHandler}
+\label{A3Anexo}
+
+\begin{tcolorbox}[colback=white!25!white,colframe=blue]
+  \begin{minted}{python}
+class CancelOrStopIntentHandler(AbstractRequestHandler):
+  """Single handler for Cancel and Stop Intent."""
+  def can_handle(self, handler_input):
+    # type: (HandlerInput) -> bool
+    return (ask_utils.is_intent_name("AMAZON.CancelIntent")(handler_input) or
+      ask_utils.is_intent_name("AMAZON.StopIntent")(handler_input))
+
+  def handle(self, handler_input):
+    # type: (HandlerInput) -> Response
+    speak_output = "Gracias por investigar con la ayuda del buscador gavilán."+
+      "Hasta pronto."
+
+    return (
+      handler_input.response_builder
+        .speak(speak_output)
+        .response
+    )
+  \end{minted}
+\end{tcolorbox}
+
+%------------------------------------------------------------
+%	HelpIntentHandler
+%------------------------------------------------------------
+
+\section{HelpIntentHandler}
+\label{A4Anexo}
+
+\begin{tcolorbox}[colback=white!25!white,colframe=blue]
+  \begin{minted}{python}
+help_list = [
+    "Puedes decir quiero saber sobre. Para comenzar una nueva investigación",
+    "Puedes elegir una de las preguntas sugeridas o buscar otra pregunta "+
+      "inicial diciendo sí o no",
+    "Puedes elegir una de las referencias sugeridas o solicitar otra diciendo "+
+      "sí o no",
+    "Puedes solicitar guardar la referencia o pedir que diga el siguiente "+
+      "párrafo si lo deseas",
+    "Puedes solicitar más información del tema diciendo lee siguiente párrafo "+
+      "o continúa con la investigación para consultar más referencias",
+    "Puedes terminar la investigación o solicitar nuevas referencias",
+    "Puedes decir agrega recordatorio u omitir recordatorio. Ya casi terminamos "+
+      "la investigación",
+    "Puedes decir cierra la skill para salir o preguntar sobre un nuevo tema"
+]
+
+class HelpIntentHandler(AbstractRequestHandler):
+  """Handler for Help Intent."""
+  def can_handle(self, handler_input):
+    # type: (HandlerInput) -> bool
+    return ask_utils.is_intent_name("AMAZON.HelpIntent")(handler_input)
+
+  def handle(self, handler_input):
+    # type: (HandlerInput) -> Response
+    speak_output = help_list[help_id] + ". " + last_request
+
+    return (
+      handler_input.response_builder
+        .speak(speak_output)
+        .ask(speak_output)
+        .response
+      )
+  \end{minted}
+\end{tcolorbox}
+
+%------------------------------------------------------------
+%	FallbackIntentHandler
+%------------------------------------------------------------
+
+\section{FallbackIntentHandler}
+\label{A5Anexo}
+
+\begin{tcolorbox}[colback=white!25!white,colframe=blue]
+  \begin{minted}{python}
+class FallbackIntentHandler(AbstractRequestHandler):
+  """Single handler for Fallback Intent."""
+  def can_handle(self, handler_input):
+    # type: (HandlerInput) -> bool
+    return ask_utils.is_intent_name("AMAZON.FallbackIntent")(handler_input)
+
+  def handle(self, handler_input):
+    # type: (HandlerInput) -> Response
+    logger.info("In FallbackIntentHandler")
+    speech = "No entendí tu petición. Puedes decir ayuda para solicitar más "+
+      "información. " + last_request
+    reprompt = "No entendí tu petición. Puedes decir solicitar ayuda en "+
+      "cualquier momento para apoyarte. " + last_request
+
+    return handler_input.response_builder.speak(speech).ask(reprompt).response
+  \end{minted}
+\end{tcolorbox}
+
+%------------------------------------------------------------
+%	tellTopicIntentHandler
+%------------------------------------------------------------
+
+\section{tellTopicIntentHandler}
+\label{A6Anexo}
+
+\begin{tcolorbox}[colback=white!25!white,colframe=blue]
+  \begin{minted}{python}
+class tellTopicIntentHandler(AbstractRequestHandler):
+  def can_handle(self, handler_input):
+    # type: (HandlerInput) -> bool
+    return ask_utils.is_intent_name("tellTopicIntent")(handler_input)
+
+  def handle(self, handler_input):
+        
+    global questions
+    global question
+    global isQuestion
+    global searcherContent
+    global reference
+    global mainTopic
+    global list_info
+    global last_request
+    global list_titles
+    global help_id
+        
+    questions = None
+    help_id = 1
+    question = 0
+    isQuestion = True
+    searcherContent = None
+    reference = 0
+    list_info = []
+    last_request = ""
+    list_titles = []
+  \end{minted}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white!25!white,colframe=blue]
+  \begin{minted}{python}    
+    slotsFromIntent = handler_input.request_envelope.request.intent.slots
+    topic = slotsFromIntent['searchWord']
+    mainTopic = topic
+    
+    s = srch.Searcher(str(topic.value), True)
+    
+    questions = s.listQuestions()
+
+    indice = random.randint(0, len(pregunta_inicial) - 1)
+    speak_output = "Una pregunta inicial te ayudará a profundizar el tema que "+
+      "deseas investigar, te presentaré algunas sugerencias para apoyarte." + 
+      questions[question] + ". " + pregunta_inicial[indice]
+    last_request = speak_output
+    isQuestion = True
+
+    return (
+      handler_input.response_builder
+        .speak(speak_output)
+        .ask(speak_output)
+        .response
+      )
+  \end{minted}
+\end{tcolorbox}
+
+%------------------------------------------------------------
+%	yesAmazonIntentHandler
+%------------------------------------------------------------
+
+\section{yesAmazonIntentHandler}
+\label{A7Anexo}
+
+\begin{tcolorbox}[colback=white!25!white,colframe=blue]
+  \begin{minted}{python}
+class yesAmazonIntentHandler(AbstractRequestHandler):
+  """Handler for Hello World Intent."""
+  def can_handle(self, handler_input):
+    # type: (HandlerInput) -> bool
+    return ask_utils.is_intent_name("AMAZON.YesIntent")(handler_input)
+
+  def handle(self, handler_input):
+    # type: (HandlerInput) -> Response
+    
+    global searcherContent
+    speak_output = ""
+    global isQuestion
+    global scraper
+    global mainTopic
+    global last_request
+    global help_id
+    
+    last_request = ""
+    
+    if questions==None:
+        speak_output = "Lo siento. Aún no tengo una pregunta inicial para iniciar"+
+          " la investigación"
+  \end{minted}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white!25!white,colframe=blue]
+  \begin{minted}{python}   
+    elif isQuestion:
+      speak_output = "Has elegido la pregunta: " + questions[question]
+      searcherContent = srch.Searcher(questions[question], False)
+      searcherContent.lookForReferences()
+      
+      indice = random.randint(0, len(sugerencia_referencia)-1)
+      speak_output += ". Encontré " + searcherContent.references[reference]['title']+ 
+        " en " + searcherContent.references[reference]['displayLink'] + ". "
+        +sugerencia_referencia[indice]
+      help_id = 2
+      isQuestion = False
+    else:
+      scraper = ws.WebScraper(searcherContent.references[reference]['link'],
+        mainTopic)
+      if scraper.has_next():
+          nextInfo = str(scraper.next())
+          speak_output = "Según " +
+            searcherContent.references[reference]['displayLink']+
+            " " + nextInfo + ", puedes decir 'guardar la referencia' para almacenar"+
+            " o 'siguiente párrafo' para escuchar más de esta referencia o "+
+            "'continuar con la investigación' para ir al siguiente paso"
+          help_id = 3
+          
+      else:
+          speak_output = "Lo siento, no pude acceder a la información de la"+
+            " referencia. Aún así puedes almacenarla diciendo... guarda la "+
+            "referencia"
+  
+    last_request = speak_output
+        
+    return (
+      handler_input.response_builder
+        .speak(speak_output)
+        .ask(speak_output)
+        .response
+    )
+  \end{minted}
+\end{tcolorbox}
+
+%------------------------------------------------------------
+%	noAmazonIntentHandler
+%------------------------------------------------------------
+
+\section{noAmazonIntentHandler}
+\label{A8Anexo}
+
+\begin{tcolorbox}[colback=white!25!white,colframe=blue]
+  \begin{minted}{python}
+class noAmazonIntentHandler(AbstractRequestHandler):
+  """Handler for Hello World Intent."""
+  def can_handle(self, handler_input):
+    # type: (HandlerInput) -> bool
+    return ask_utils.is_intent_name("AMAZON.NoIntent")(handler_input)
+
+  def handle(self, handler_input):
+    # type: (HandlerInput) -> Response
+    global question
+    global questions
+    global reference
+    global last_request
+    global help_id
+    
+    last_request = ""
+        
+    speak_output = ""
+    if questions==None:
+      speak_output = "Lo siento. Aún no tengo una pregunta inicial para iniciar la"+
+      " investigación"
+    elif isQuestion:
+      question = (question + 1) % len(questions)
+      speak_output = questions[question] + ". ¿Es tu pregunta inicial o busco otra "+
+        "opción?"
+      help_id = 1
+    else:
+      reference = (reference + 1) % len(searcherContent.references)
+      speak_output = "Encontré " + searcherContent.references[reference]['title'] +
+        " en " + searcherContent.references[reference]['displayLink'] + 
+        ". ¿Consulto esta referencia o busco otra?"
+      help_id = 2
+    
+    last_request = speak_output
+    
+    return (
+      handler_input.response_builder
+        .speak(speak_output)
+        .ask(speak_output)
+        .response
+    )
+  \end{minted}
+\end{tcolorbox}
+
+%------------------------------------------------------------
+%	nextInfoIntentHandler
+%------------------------------------------------------------
+
+\section{nextInfoIntentHandler}
+\label{A9Anexo}
+
+\begin{tcolorbox}[colback=white!25!white,colframe=blue]
+  \begin{minted}{python}
+class nextInfoIntentHandler(AbstractRequestHandler):
+  def can_handle(self, handler_input):
+    # type: (HandlerInput) -> bool
+    return ask_utils.is_intent_name("nextInfoIntent")(handler_input)
+
+  def handle(self, handler_input):
+        
+    global scraper
+    global last_request
+    global help_id
+        
+    last_request = ""
+    speak_output = ""
+        
+    if scraper == None:
+      speak_output = "Lo siento, aún no has elegido tema o referencia"
+    elif scraper.has_next():
+      nextInfo = str(scraper.next())
+      speak_output = nextInfo + ", puedes decir 'guardar la referencia' para "+
+        "almacenar o 'siguiente párrafo' para escuchar más de esta referencia o "+
+        "'continuar con la investigación' para ir al siguiente paso"
+      help_id = 3
+    else:
+      nextInfoIntent = "Lo siento, ya no hay más información para mostrar en esta"+
+        " referencia. Puedes almacenarla diciendo... Guarda la referencia"
+      help_id = 3
+    
+    last_request = speak_output
+    return (
+      handler_input.response_builder
+        .speak(speak_output)
+        .ask(speak_output)
+        .response
+    )
+  \end{minted}
+\end{tcolorbox}
+
+%------------------------------------------------------------
+%	continueIntentHandler
+%------------------------------------------------------------
+
+\section{continueIntentHandler}
+\label{A10Anexo}
+
+\begin{tcolorbox}[colback=white!25!white,colframe=blue]
+  \begin{minted}{python}
+class continueIntentHandler(AbstractRequestHandler):
+  def can_handle(self, handler_input):
+    # type: (HandlerInput) -> bool
+    return ask_utils.is_intent_name("continueIntent")(handler_input)
+
+  def handle(self, handler_input):
+        
+    global last_request
+    global help_id
+        
+    last_request = ""
+        
+    speak_output = "Puedes decir 'consultar más fuentes' para investigar más o"+
+      " 'terminar la investigación' para continuar"
+    help_id = 5
+    last_request = speak_output
+        
+    return (
+      handler_input.response_builder
+        .speak(speak_output)
+        .ask(speak_output)
+        .response
+    )
+  \end{minted}
+\end{tcolorbox}
+
+%------------------------------------------------------------
+%	endInvestigationIntentHandler
+%------------------------------------------------------------
+
+\section{endInvestigationIntentHandler}
+\label{A11Anexo}
+
+\begin{tcolorbox}[colback=white!25!white,colframe=blue]
+  \begin{minted}{python}
+class endInvestigationIntentHandler(AbstractRequestHandler):
+  def can_handle(self, handler_input):
+    # type: (HandlerInput) -> bool
+    return ask_utils.is_intent_name("endInvestigationIntent")(handler_input)
+
+  def handle(self, handler_input):
+        
+    global last_request
+    global help_id
+        
+    help_id = 6
+    last_request = ""
+    speak_output = "No olvides agregar tu nombre y fuentes consultadas en la "+
+      "investigación. Puedes decir 'agrega recordatorio' para no olvidar la fecha "+
+      "de entrega. También puedes saltar el recordatorio diciendo 'omitir "+
+      "recordatorio'"
+    last_request = speak_output
+  \end{minted}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white!25!white,colframe=blue]
+  \begin{minted}{python}            
+    return (
+      handler_input.response_builder
+        .speak(speak_output)
+        .ask(speak_output)
+        .response
+    )
+  \end{minted}
+\end{tcolorbox}
+
+%------------------------------------------------------------
+%	addReminderIntentHandler
+%------------------------------------------------------------
+
+\section{addReminderIntentHandler}
+\label{A12Anexo}
+
+\begin{tcolorbox}[colback=white!25!white,colframe=blue]
+  \begin{minted}{python}
+class addReminderIntentHandler(AbstractRequestHandler):
+  def can_handle(self, handler_input):
+    # type: (HandlerInput) -> bool
+    return ask_utils.is_intent_name("addReminderIntent")(handler_input)
+
+  def handle(self, handler_input):
+        
+    global last_request
+    global help_id
+        
+    last_request =""
+    help_id = 7
+        
+    slotsFromIntent = handler_input.request_envelope.request.intent.slots
+        
+    date = slotsFromIntent['date'].value
+    speak_output = "Tu recordatorio está listo para " + date
+        
+    request_envelope = handler_input.request_envelope
+    response_builder = handler_input.response_builder
+    reminder_service = handler_input.service_client_factory.
+      get_reminder_management_service()
+        
+    # Permisos para recordatorios
+    if not (request_envelope.context.system.user.permissions and
+      request_envelope.context.system.user.permissions.consent_token):
+            
+      return response_builder.add_directive(
+        SendRequestDirective(
+          name="AskFor",
+          payload={
+            "@type": "AskForPermissionsConsentRequest",
+            "@version": "1",
+            "permissionScope": "alexa::alerts:reminders:skill:readwrite"
+          },
+          token="correlationToken"
+        )
+      ).response
+  \end{minted}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white!25!white,colframe=blue]
+  \begin{minted}{python}
+    # Creación de recordatorio
+    date_components = str(date).split("-")
+    notification_time = date_components[0]+"-"+date_components[1]+"-"+
+      date_components[2]+"T23:59:00"
+
+    trigger = Trigger(object_type = TriggerType.SCHEDULED_ABSOLUTE, 
+      scheduled_time = notification_time)
+    text = SpokenText(locale='es-es', ssml = "<speak>Este es un recordatorio del "+
+      "buscador Gavilán. No olvides entregar tu Investigación sobre" + 
+      str(mainTopic.value) +"</speak>", text= 'Investigación de ' + 
+      str(mainTopic.value) + ". No olvides "+"entregar tu Investigación.")
+    alert_info = AlertInfo(AlertInfoSpokenInfo([text]))
+    push_notification = PushNotification(PushNotificationStatus.ENABLED)
+    reminder_request = ReminderRequest(notification_time , trigger, alert_info, 
+      push_notification)
+
+    try:
+      reminder_response = reminder_service.create_reminder(reminder_request)
+      logger.info("Reminder Created: {}".format(reminder_response))
+    except ServiceException as e:
+      logger.info("Exception encountered: {}".format(e.body))
+      return response_builder.
+        speak('Lo siento. No se pudo crear el recordatorio').response
+        
+    # Envío de datos al celular
+    card_title = "Buscador Gavilán"
+    card_text = ""
+        
+    if len(list_info) != 0:
+      speak_output += ". Las referencias finales de la investigación son "
+          
+      for data in list_titles:
+        speak_output += data + ". "
+          
+      message = ""
+      for data in list_info:
+        message += f"* {data}\n"
+            
+      speak_output += "Puedes consultar estas referencias en la app de Alexa. "
+      #card_title = "Buscador Gavilán"
+      card_text = message
+  \end{minted}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white!25!white,colframe=blue]
+  \begin{minted}{python} 
+    remember_message = " Recuerda que puedes presentar la información en una "+
+      "gráfica, un cuadro comparativo, una tabla, un artículo, un cuadro "+
+      "sinóptico, un reporte o incluso en un dibujo. Gracias por investigar con"+
+      " la ayuda del buscador gavilán, hasta pronto."
+    speak_output += remember_message
+        
+    last_request = speak_output
+        
+    return (
+      handler_input.response_builder
+        .speak(speak_output)
+        #.ask(speak_output) # Aquí termina la skill
+        .response
+    )
+  \end{minted}
+\end{tcolorbox}
+
+%------------------------------------------------------------
+%	omitIntentHandler
+%------------------------------------------------------------
+
+\section{omitIntentHandler}
+\label{A13Anexo}
+
+\begin{tcolorbox}[colback=white!25!white,colframe=blue]
+  \begin{minted}{python}
+class omitIntentHandler(AbstractRequestHandler):
+  def can_handle(self, handler_input):
+    # type: (HandlerInput) -> bool
+    return ask_utils.is_intent_name("omitIntent")(handler_input)
+
+  def handle(self, handler_input):
+        
+    global last_request
+    global help_id
+        
+    help_id = 7
+    last_request = ""
+    speak_output = ""
+        
+    card_title = "Buscador Gavilán"
+    card_text = ""
+        
+    if len(list_info) != 0:
+      speak_output += "Las referencias finales de la investigación son las "+
+        "siguientes. "
+            
+      for data in list_titles:
+        speak_output += data + ". "
+            
+      message = ""
+      for data in list_info:
+        message += f"* {data}\n"
+  \end{minted}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white!25!white,colframe=blue]
+  \begin{minted}{python}
+      speak_output += "Puedes consultar estas referencias en la app de Alexa."
+      #card_title = "Buscador Gavilán"
+      card_text = message
+      
+    remember_message = "Recuerda que puedes presentar la información en una "+
+      "gráfica, un cuadro comparativo, una tabla, un artículo, un cuadro "+
+      "sinóptico, un reporte o incluso en un dibujo. Gracias por investigar con "+
+      "la ayuda del buscador gavilán, hasta pronto."
+    speak_output += remember_message
+         
+    last_request = speak_output
+        
+    if len(list_info) != 0:
+      return (
+        handler_input.response_builder
+          .speak(speak_output)
+          .set_card(SimpleCard(card_title, card_text))
+          #.ask(speak_output) # Aqui se termina la skill
+          .response
+      )
+    else:
+      return (
+        handler_input.response_builder
+          .speak(speak_output)
+          #.ask(speak_output) # Aqui se termina la skill
+          .response
+      )
+  \end{minted}
+\end{tcolorbox}
+
+%------------------------------------------------------------
+%	lastRequestIntentHandler
+%------------------------------------------------------------
+
+\section{lastRequestIntentHandler}
+\label{A14Anexo}
+
+\begin{tcolorbox}[colback=white!25!white,colframe=blue]
+  \begin{minted}{python}
+class lastRequestIntentHandler(AbstractRequestHandler):
+  def can_handle(self, handler_input):
+    # type: (HandlerInput) -> bool
+    return ask_utils.is_intent_name("lastRequestIntent")(handler_input)
+
+  def handle(self, handler_input):
+        
+    global last_request
+        
+    speak_output = last_request
+                
+    return (
+      handler_input.response_builder
+        .speak(speak_output)
+        .ask(speak_output)
+        .response
+    )
+
+  \end{minted}
+\end{tcolorbox}
