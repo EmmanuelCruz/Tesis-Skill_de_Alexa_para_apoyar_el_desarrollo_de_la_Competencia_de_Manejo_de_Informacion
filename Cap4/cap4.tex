@@ -1208,7 +1208,7 @@ A partir de las herramientas construidas en la etapa de análisis del usuario, s
 %	Invocaciones del Buscador Gavilán
 %------------------------------------------------------------
 
-\section{Invocaciones del Buscador Gavilán}
+\subsection{Invocaciones del Buscador Gavilán}
 \label{InvocacionesBuscadorGavilancapIV}
 
 El Buscador Gavilán es una skill que entra en la categoría de skills personalizadas, por lo que requiere un nombre de invocación. El comando de invocación de una skill es la forma en que se solicita la llamada de la misma para comenzar a ejecutar su funcionamiento.
@@ -1229,6 +1229,778 @@ Es importante mencionar que el nombre de invocación considera la entonación de
 %	Intenciones, declaraciones y slots del Buscador Gavilán
 %------------------------------------------------------------
 
-\section{Intenciones, declaraciones y slots del Buscador Gavilán}
+\subsection{Intenciones, declaraciones y slots del Buscador Gavilán}
 \label{IntencionesDeclaracionesSlotscapIV}
 
+Las intenciones de la skill cuentan con conjunto de declaraciones cada una. A su vez, algunas declaraciones cuentan con uno o más slots. Cada intención de la skill está diseñada para resolver una subtarea específica del problema general en cada proceso de la búsqueda de información con el Buscador Gavilán. A continuación se presentan las intenciones reconocidas por la skill y la subtarea que resuelve, así como las declaraciones y slots utilizados.
+
+%------------------------------------------------------------
+%	AMAZON.CancelIntent
+%------------------------------------------------------------
+
+\subsubsection{AMAZON.CancelIntent}
+\label{CancelIntentcapIV}
+
+Esta intención se encuentra predefinida por la consola de desarrollo de Alexa como una intención requerida, por lo que no puede ser eliminada. Su objetivo es englobar todas las declaraciones para terminar la ejecución de una subtarea, sin salir de la skill.
+
+Al ser una intención que está definida por omisión, las declaraciones se encuentran predefinidas con la misma. Entre las declaraciones posibles para invocar la intención se encuentran las siguientes palabras y frases:
+
+\begin{itemize}
+  \item Cancelar
+  \item Cancela
+\end{itemize}
+
+%------------------------------------------------------------
+%	AMAZON.HelpIntent
+%------------------------------------------------------------
+
+\subsubsection{AMAZON.HelpIntent}
+\label{HelpIntentcapIV}
+
+Esta intención se encuentra predefinida por la consola de desarrollo de Alexa como una intención requerida, por lo que no puede ser eliminada. Está enfocada a englobar las declaraciones que sirven como guía al usuario, brindando instrucciones de ayuda para poder utilizar la skill.
+
+Entre las declaraciones posibles para invocar la intención se encuentran las siguientes:
+
+\begin{itemize}
+  \item Ayuda
+  \item Quiero ayuda
+\end{itemize}
+
+%------------------------------------------------------------
+%	AMAZON.StopIntent
+%------------------------------------------------------------
+
+\subsubsection{AMAZON.StopIntent}
+\label{StopIntentcapIV}
+
+Esta intención se encuentra predefinida por la consola de desarrollo de Alexa como una intención requerida, por lo que no puede ser eliminada. A diferencia de la intención AMAZON.CancelIntent, esta intención engloba las declaraciones para terminar la ejecución completa de la skill.
+
+Entre las declaraciones posibles para invocar la intención se encuentran las siguientes palabras y frases:
+
+\begin{itemize}
+  \item Para
+  \item Termina
+  \item Cierra skill
+  \item Cierra la skill
+\end{itemize}
+
+%------------------------------------------------------------
+%	AMAZON.NavigateHomeIntent
+%------------------------------------------------------------
+
+\subsubsection{AMAZON.NavigateHomeIntent}
+\label{NavigateHomeIntentcapIV}
+
+Esta intención se encuentra predefinida por la consola de desarrollo de Alexa como una intención requerida, por lo que no puede ser eliminada, sin embargo, esta intención está configurada para funcionar únicamente con dispositivos que cuentan con pantalla.
+
+Su función es cerrar la skill y posicionar la vista de la pantalla en la pantalla de inicio de Alexa. La intención puede ser invocada por medio de las siguientes declaraciones:
+
+\begin{itemize}
+  \item Ve al inicio
+  \item Inicio
+\end{itemize}
+
+%------------------------------------------------------------
+%	AMAZON.FallbackIntent
+%------------------------------------------------------------
+
+\subsubsection{AMAZON.FallbackIntent}
+\label{FallbackIntentcapIV}
+
+Esta intención se encuentra predefinida por la consola de desarrollo de Alexa como una intención requerida, por lo que no puede ser eliminada. Su función es englobar las declaraciones que dan orientación al usuario cuando alguna solicitud no fue reconocida por las declaraciones válidas de cualquier intención.
+
+Está intención no cuenta con declaraciones predefinidas, ya que se invoca únicamente en caso de no reconocer la solicitud con alguna declaración válida.
+
+%------------------------------------------------------------
+%	tellTopicIntent
+%------------------------------------------------------------
+
+\subsubsection{tellTopicIntent}
+\label{tellTopicIntentcapIV}
+
+Es una intención personalizada que tiene como objetivo englobar las declaraciones que obtienen el tema general de la investigación. Esta intención es el comienzo del flujo de interacción con la skill, en donde es necesario conocer el tema del cuál se buscará información.
+
+Dada la gran variedad de formas en que se puede solicitar información de un tema, se crearon sesenta y siete declaraciones, entre las que se encuentran las siguientes:
+
+\begin{itemize}
+  \item dime sobre el tema de \{searchWord\}
+  \item dame el tema \{searchWord\}
+  \item quiero saber sobre el tema de \{searchWord\}
+  \item quiero saber sobre el tema \{searchWord\}
+  \item sobre el tema \{searchWord\}
+  \item por qué \{searchWord\}
+  \item donde puedo \{searchWord\}
+  \item donde fue la \{searchWord\}
+  \item cuando fue el \{searchWord\}
+  \item cómo funciona la \{searchWord\}
+  \item que es el \{searchWord\}
+  \item debo investigar acerca de \{searchWord\}
+  \item dime de \{searchWord\}
+  \item busca sobre \{searchWord\}
+\end{itemize}
+
+Cada una de las declaraciones definidas anteriormente cuenta con un slot, llamado \textit{searchWord}. Este slot es la variable que almacena en texto el tema con el que se comenzará la investigación.
+
+El slot \textit{searchWord} es de tipo AMAZON.SearchQuery, el cual convierte la información en una palabra o frase que puede ser ingresada en un motor de búsqueda estándar. Dado que la búsqueda de información se basa en la web, este tipo de slot es el más adecuado para obtener la información acerca del tema general de la investigación.
+
+%------------------------------------------------------------
+%	AMAZON.YesIntent
+%------------------------------------------------------------
+
+\subsubsection{AMAZON.YesIntent}
+\label{YesIntentcapIV}
+
+Esta intención se encuentra predefinida por la consola de desarrollo de Alexa como una intención no requerida u opcional. Su función es englobar todas las declaraciones para reconocer aquellas entradas que pueden ser consideradas como una afirmación. En la skill, se utiliza para reconocer declaraciones que confirman una pregunta inicial o una fuente de información a investigar.
+
+Dado que la intención es predefinida, algunas declaraciones ya se encuentran incorporadas por omisión,tales como las siguientes:
+
+\begin{itemize}
+  \item Sí
+  \item Confirmo
+  \item Afirmativo
+  \item Así es
+  \item Es correcto
+\end{itemize}
+
+A su vez, se incorporaron otras declaraciones acordes a la skill para ser reconocidas con el mismo propósito de las declaraciones ya existentes. Entre estas declaraciones personalizadas se encuentran las siguientes:
+
+\begin{itemize}
+  \item usa esa sugerencia
+  \item quiero esa recomendación
+  \item elige la referencia
+  \item consulta la referencia
+  \item utiliza la pregunta
+  \item consulta esa referencia
+  \item quiero comenzar por esa opción
+  \item sí es la opción
+\end{itemize}
+
+%------------------------------------------------------------
+%	AMAZON.NoIntent
+%------------------------------------------------------------
+
+\subsubsection{AMAZON.NoIntent}
+\label{NoIntentcapIV}
+
+Esta intención se encuentra predefinida por la consola de desarrollo de Alexa como una intención no requerida u opcional. Su función es englobar todas las declaraciones para reconocer aquellas entradas que pueden ser consideradas como una negación. En la skill, esta intención es utilizada para reconocer declaraciones para sugerir una pregunta inicial al rechazar una propuesta, o dar una sugerencia de una fuente de información al ser rechazada una propuesta.
+
+Dado que la intención es predefinida, algunas declaraciones ya se encuentran incorporadas por omisión, entre las que se encuentran las siguientes:
+
+\begin{itemize}
+  \item No
+  \item Estoy en desacuerdo
+  \item No es
+  \item Negativo
+\end{itemize}
+
+Al igual que la intención AMAZON.YesIntent, se incorporaron otras declaraciones acordes a la skill para ser reconocidas con el mismo propósito de las declaraciones ya existentes. Entre estas declaraciones personalizadas se encuentran las siguientes:
+
+\begin{itemize}
+  \item sugiere otra pregunta inicial
+  \item dame otra pregunta
+  \item dame más recomendaciones
+  \item dame más sugerencias
+  \item busca otra recomendación
+  \item busca más
+  \item recomiendame otra referencia
+  \item consulta más fuentes
+  \item busca otra opción
+  \item siguiente opción
+  \item intenta con otra
+\end{itemize}
+
+%------------------------------------------------------------
+%	nextInfoIntent
+%------------------------------------------------------------
+
+\subsubsection{nextInfoIntent}
+\label{nextInfoIntentcapIV}
+
+Es una intención personalizada que tiene el propósito de englobar todas las declaraciones enfocadas a obtener más información de un recurso. Cuando un usuario indaga en el contenido de una fuente de información, esta se presenta por párrafos. Las declaraciones englobadas en ésta intención están enfocadas a obtener el contenido del párrafo siguiente del actual, dentro de la fuente de información elegida.
+
+Las declaraciones definidas para está intención son las siguientes:
+
+\begin{itemize}
+  \item dime más sobre el tema
+  \item dime más
+  \item quiero más información
+  \item dame más información
+  \item más información
+  \item dime el siguiente
+  \item lee siguiente
+  \item lee el siguiente párrafo
+  \item extiende la información
+  \item quiero saber más
+  \item siguiente párrafo
+\end{itemize}
+
+%------------------------------------------------------------
+%	continueIntent
+%------------------------------------------------------------
+
+\subsubsection{continueIntent}
+\label{continueIntentcapIV}
+
+Es una intención personalizada que tiene el propósito de englobar todas las declaraciones enfocadas a dar la posibilidad de terminar la investigación del contenido de la fuente actual.
+
+Entre las declaraciones definidas en esta intención se encuentran las siguientes:
+
+\begin{itemize}
+  \item ir al siguiente paso de la investigación
+  \item ir al siguiente paso
+  \item sigue la investigación
+  \item continuar con la investigación
+\end{itemize}
+
+%------------------------------------------------------------
+%	endInvestigationIntent
+%------------------------------------------------------------
+
+\subsubsection{endInvestigationIntent}
+\label{endInvestigationIntentcapIV}
+
+Es una intención personalizada que tiene el propósito de englobar todas las declaraciones enfocadas a terminar la etapa de búsqueda de información, por lo que termina de recomendar fuentes de información y leer contenido de las mismas.
+
+Entre las declaraciones definidas para invocar está intención se encuentran las siguientes:
+
+\begin{itemize}
+  \item concluye la investigación
+  \item finaliza la investigación
+  \item termina la investigación
+\end{itemize}
+
+%------------------------------------------------------------
+%	addReminderIntent
+%------------------------------------------------------------
+
+\subsubsection{addReminderIntent}
+\label{addReminderIntentcapIV}
+
+Es una intención personalizada que tiene el propósito de englobar todas las declaraciones que permiten agregar un recordatorio dentro del sistema de la skill.
+
+Algunas declaraciones definidas para está intención son las siguientes:
+
+\begin{itemize}
+  \item agrega el recordatorio para el día \{date\}
+  \item crea el recordatorio para el día \{date\}
+  \item agrega el recordatorio para el \{date\}
+  \item agrega un recordatorio el \{date\}
+\end{itemize}
+
+En las declaraciones definidas, se utiliza un slot llamado date. Este slot es de tipo AMAZON.DATE, el cuál transforma las entradas a fechas en el formato 2022-09-00T9. La creación de un recordatorio en la lista de recordatorios del servicio de Alexa, requiere de un día y un mes de forma obligatoria, por lo que el tipo AMAZON.DATE es el más adecuado para almacenar está información, ya que contiene la información requerida.
+
+En el conjunto de declaraciones de está intención, existen declaraciones que no contienen el dato de la fecha como un slot, tales como los siguientes:
+
+\begin{itemize}
+  \item crea recordatorio
+  \item agrega recordatorio
+\end{itemize}
+
+El slot llamado \textit{date}, está configurado como un slot obligatorio. Cuando alguna de las declaraciones que no contienen el slot es conocido, la intención realiza solicitudes extra para obtener la fecha. Algunas de las solicitudes realizadas por está intención son las siguientes.
+
+\begin{itemize}
+  \item Dime la fecha de entrega de tu tarea
+  \item Dime la fecha en que te recordaré la entrega
+  \item ¿Cuándo te lo recuerdo?
+  \item ¿Qué día quieres que te recuerde la entrega?
+\end{itemize}
+
+Las respuestas válidas a estas solicitudes son las siguientes:
+
+\begin{itemize}
+  \item para el \{date\}
+  \item para \{date\}
+  \item crea un recordatorio para \{date\}
+  \item agrega recordatorio para \{date\}
+  \item agrega el recordatorio el \{date\}
+\end{itemize}
+
+En estas solicitudes se pide el dato \textit{date} obligatoriamente para poder invocar correctamente está intención.
+
+%------------------------------------------------------------
+%	omitIntent
+%------------------------------------------------------------
+
+\subsubsection{omitIntent}
+\label{omitIntentcapIV}
+
+Es una intención personalizada que tiene el propósito de englobar todas las declaraciones que omiten la declaración de un recordatorio. Dado que los recordatorios fungen como una funcionalidad no obligatoria, es posible saltarlos cuando se reconoce alguna de las declaraciones definidas para está intención. Entre las que se encuentran las siguientes declaraciones:
+
+\begin{itemize}
+  \item omitir recordatorio
+  \item omite recordatorio
+\end{itemize}
+
+%------------------------------------------------------------
+%	lastRequestIntent
+%------------------------------------------------------------
+
+\subsubsection{lastRequestIntent}
+\label{lastRequestIntentcapIV}
+
+Es una intención personalizada que tiene el propósito de englobar todas las declaraciones que permiten recordar la última solicitud realizada por un usuario. Entre las declaraciones de está intención se encuentran las siguientes:
+
+\begin{itemize}
+  \item Recuérdame la última solicitud
+  \item Cuál fue la última solicitud
+  \item Dime la última solicitud
+  \item Recuérdame la última petición
+  \item Recuérdame donde estaba
+\end{itemize}
+
+%------------------------------------------------------------
+%	Custom Search JSON API
+%------------------------------------------------------------
+
+\subsection{Custom Search JSON API}
+\label{CustomSearchJSONAPIcapIV}
+
+% REFERENCIA
+Google Developers (2022) señala que el API JSON de búsqueda personalizada es un API que permite desarrollar sitios o aplicaciones para buscar y mostrar resultados dados por un motor de búsqueda.
+
+Esta API permite recibir una frase en texto para comenzar la búsqueda. Los resultados encontrados en el motor de búsqueda se devuelven en formato JSON, del cual se puede extraer información de cada resultado, tal como su URL, descripción, dominio, título, lenguaje, entre otros.
+
+Google Developers ofrece el servicio llamado \textit{Custom Search JSON API} con el control de un API Key, que permite identificar un cliente en Google, ya que el API Key está asociada a una cuenta de correo electrónico de Gmail.
+
+A su vez, el API key controla ciertas configuraciones sobre la búsqueda que pueden definirse desde la consola de desarrollo de Google Developers. Algunas de estas configuraciones son restricciones de clave, restricciones de aplicaciones, restricciones de sitios web y restricciones de API.
+
+La construcción básica para obtener los servicios del API JSON de búsqueda personalizada en Python se define de la siguiente forma:
+
+\begin{tcolorbox}[colback=white!25!white,colframe=blue]
+  \begin{minted}{python}
+from apiclient.discovery import build
+
+api_key = 'API-KEY'
+resource = build("customsearch", 'v1', developerKey=api_key).cse()
+  \end{minted}
+\end{tcolorbox}
+
+Donde API-KEY es la credencial generada por la consola de desarrollo de Google Developers para hacer uso del servicio.
+
+El objeto \textit{resource}, construido en el código anterior, cuenta con un método llamado \textit{list}, el cuál permite listar todos los resultados de una página que se mostrarían en un motor de búsqueda convencional como Google, Firefox, Safari, entre otros. La estructura básica para la obtención de resultados desde la API en Python, se muestra a continuación.
+
+\begin{tcolorbox}[colback=white!25!white,colframe=blue]
+  \begin{minted}{python}
+results = resource.list(q=topic, cx='7931d2f657f7b38a2').execute()
+  \end{minted}
+\end{tcolorbox}
+
+Donde:
+
+\begin{itemize}
+  \item \textbf{q:} corresponde a una palabra o frase que será el tema del que se buscarán resultados en el motor de búsqueda.
+  \item \textbf{cx:} corresponde al ID del motor de búsqueda que se usará para realizar la solicitud.
+  \item \textbf{results:} es un objeto tipo JSON con la respuesta obtenida de la solicitud. En este objeto se almacenan los resultados encontrados en el motor de búsqueda.
+\end{itemize}
+
+%------------------------------------------------------------
+%	Generación de preguntas y búsqueda de fuentes
+%------------------------------------------------------------
+
+\subsubsection{Generación de preguntas y búsqueda de fuentes}
+\label{GeneracionPreguntasBusquedaFuentescapIV}
+
+La generación de preguntas de sugerencia de la skill se apoya del API JSON de búsqueda personalizada para generar sugerencias de preguntas. La forma en que se generan es a partir de la búsqueda de la concatenación de un tema general y las principales palabras que conforman una pregunta, tales como qué, cómo, entre otras.
+
+Cada una de las sugerencias encontradas es filtrada para extraer sólo aquellas apariciones de preguntas, tal como se muestra a continuación.
+
+\begin{tcolorbox}[colback=white!25!white,colframe=blue]
+  \begin{minted}{python}
+whyQuestion = resource.list(q='por que '+topic,cx='7931d2f657f7b38a2').execute()
+whatQuestion = resource.list(q='que '+topic,cx='7931d2f657f7b38a2').execute()
+whenQuestion = resource.list(q='cuando '+topic, cx='7931d2f657f7b38a2').execute()
+whoQuestion = resource.list(q='quien '+topic, cx='7931d2f657f7b38a2').execute()
+howQuestion = resource.list(q='como '+topic, cx='7931d2f657f7b38a2').execute()
+  \end{minted}
+\end{tcolorbox}
+
+Las variables \textit{whyQuestion}, \textit{whatQuestion}, \textit{whenQuestion}, \textit{whoQuestion} y \textit{howQuestion} contienen una respuesta a los resultados encontrados en el motor de búsqueda, que posteriormente son filtrados por título, donde se verifica que existe un signo de interrogación, el cuál denota una pregunta.
+
+Cuando una pregunta es seleccionada como pregunta inicial, se aprovecha el funcionamiento del servicio de búsqueda personalizada para obtener resultados asociados a una pregunta, tal como sigue en el siguiente fragmento de código.
+
+\begin{tcolorbox}[colback=white!25!white,colframe=blue]
+  \begin{minted}{python}
+resources = resource.list(q=selectedQuestion, cx='7931d2f657f7b38a2').execute()
+  \end{minted}
+\end{tcolorbox}
+
+Donde:
+
+\begin{itemize}
+  \item \textbf{selectedQuestion:} corresponde a una pregunta seleccionada del conjunto de preguntas sugeridas.
+  \item \textbf{resources:} contiene los resultados de la búsqueda que fungen como fuentes de información para la skill.
+\end{itemize}
+
+%------------------------------------------------------------
+%	Web Scraping
+%------------------------------------------------------------
+
+\subsection{Web Scraping}
+\label{WebScrapingcapIV}
+
+% REFERENCIA
+De acuerdo con Bo (2017), el Web Scraping es una técnica para extraer datos de la World Wide Web (www). La información que se puede extraer de la web con la técnica de Web Scraping puede ir desde texto, hasta imágenes y videos. A su vez, permite recopilar grandes cantidades de datos bien organizados en diferentes escenarios que van desde extracciones asistidas por humanos hasta su aplicación en sistemas completamente automatizados.
+
+% REFERENCIA
+Bo (2017) señala que el Web Scraping se puede dividir en dos pasos secuenciales: adquirir los recursos web y extraer la información de los datos adquiridos. Para adquirir, esta técnica requiere de una solicitud de tipo HTTP, la cual se forma por una solicitud GET con la URL de la dirección web donde se extraerán los datos. Posteriormente, el proceso de extracción analiza, formatea y organiza los datos en un formato estructurado dentro un objeto de tipo JSON.
+
+Cabe mencionar que aunque el Web Scraping es una técnica poderosa para recopilar grandes cantidades de datos, es importante configurar y programar su funcionamiento de forma ética y responsable. Es decir, la extracción de datos debe considerar cuestiones legales, tales como los derechos de autor, los términos de servicios y el traspaso de bienes muebles, por lo que se vuelve relevante considerar un control responsable sobre el envío de solicitudes para la adquisición de datos, así como dar crédito a los autores. Algunos sitios web cuentan con mecanismos que previenen el ataque de sistemas malignos contra un servidor, por lo que es posible que la técnica de Web Scraping no pueda extraer información de dichos sitios web.
+
+Para el presente proyecto, se implementó un web scraper con el fin de extraer la información de las fuentes de información encontradas en la web con la biblioteca BeautifulSoup, disponible para el lenguaje de programación Python.
+
+En la clase WebScraper se implementan algunos métodos que facilitan el manejo de Web Scraping sobre un sitio web que contenga texto. Estos métodos se definen como se muestra en el siguiente código del anexo \ref{A1Anexo}.
+
+%------------------------------------------------------------
+%	Handlers
+%------------------------------------------------------------
+
+\subsection{Handlers}
+\label{HandlerscapIV}
+
+Los Handlers son funciones que implementan el comportamiento específico para una intención. Los Handlers permiten la construcción de la respuesta de una declaración asociada a la activación de una intención.
+
+A continuación se presentan los Handlers implementados para el Buscador Gavilán y su función general.
+
+\begin{itemize}
+  \item \textbf{LaunchRequestHandler.} Implementa el handler con solicitud de tipo LaunchRequest, el cuál se ejecuta una vez que se activa la skill. Este lanza un mensaje de bienvenida y una instrucción general de cómo comenzar una investigación con el Buscador Gavilán, tal como se muestra en el anexo \ref{A2Anexo}.
+  \item \textbf{CancelOrStopIntentHandler.} Implementa el comportamiento definido para las intenciones AMAZON.CancelIntent y AMAZON.StopIntent, la cuál lanza un mensaje de despedida al usuario antes de finalizar la ejecución de la skill, tal como se muestra en el anexo \ref{A3Anexo}.
+  \item \textbf{HelpIntentHandler.} Implementa el comportamiento para la intención AMAZON.HelpIntent, la cuál lanza una indicación de ayuda dependiendo del estado de la skill. Es decir, puede ayudar a iniciar una investigación, elegir alguna referencia, entre otros. Así mismo, regresa una frase con la última respuesta dada por la skill, tal como se muestra en el anexo \ref{A4Anexo}.
+  \item \textbf{FallbackIntentHandler.} Implementa el comportamiento para la intención AMAZON.FallbackIntent, la cuál se lanza cuando un comando no es reconocido por las declaraciones de las intenciones válidas. Lanza un mensaje para informar que la solicitud no fue entendida y se vuelva a repetir, así como informar la información de la última petición solicitada, tal como se muestra en el anexo \ref{A5Anexo}.
+  \item \textbf{tellTopicIntentHandler.} Implementa el comportamiento de la intención tellTopicIntent. Este handler inicializa todos los valores al primer estado, ya que es la primera intención que se ejecuta al comenzar una nueva investigación en la skill. Por otra parte, se crea una nueva instancia de un scraper para comenzar con la generación de preguntas, las cuales se almacenan de forma global en durante la ejecución de la skill. Lanza como respuesta una breve información sobre una pregunta inicial y la primera sugerencia de una pregunta, tal como se muestra en el anexo \ref{A6Anexo}.
+  \item \textbf{yesAmazonIntentHandler.} Implementa el comportamiento de la intención AMAZON.YesIntent, la cuál recibe una respuesta afirmativa. Este handler funciona para dos estados distintos de la skill: cuando se afirma una pregunta inicial y cuando se afirma una fuente de información. Cuando se afirma una pregunta inicial, se lee la pregunta elegida y se da la primera sugerencia de fuente de información relacionada a la pregunta. Cuando se afirma una fuente de información, se lee el autor del dominio del cuál se extrae la información y se da conocimiento del primer párrafo de la fuente de información seleccionada, tal como se muestra en el anexo \ref{A7Anexo}.
+  \item \textbf{noAmazonIntentHandler.} Implementa el comportamiento de la intención AMAZON.NoIntent, la cual recibe una declaración negativa. En los estados de la skill se puede negar una pregunta sugerida y una fuente de información, por lo que se divide en dos casos dependiendo del estado de la skill. Cuando se niega una pregunta sugerida, se lanza como respuesta otra pregunta sugerida, mientras que cuando se niega una fuente de información, se lanza como respuesta la siguiente fuente de información posible, tal como se muestra en el anexo \ref{A8Anexo}.
+  \item \textbf{nextInfoIntentHandler.} Implementa la funcionalidad para la intención nextInfoIntent, la cuál lanza como respuesta un párrafo de la fuente de información seleccionada en el proceso de selección de fuentes de información a partir de una pregunta inicial. En caso de no haber leído todos los párrafos, lanza un mensaje informativo para anunciar que no hay más contenido por dar como respuesta, tal como se muestra en el anexo \ref{A9Anexo}.
+  \item \textbf{continueIntentHandler.} Implementa la funcionalidad de la intención continueIntent, la cuál manda un mensaje informativo para elegir una de dos opciones: consultar más fuentes de información o terminar con el proceso de investigación, tal como se muestra en el anexo \ref{A10Anexo}.
+  \item \textbf{endInvestigationIntentHandler.} Implementa la funcionalidad de la intención endInvestigationIntent, la cual da los datos informativos finales de la investigación, tal como consejos generales y una respuesta informativa para agregar u omitir recordatorios, tal como se muestra en el anexo \ref{A11Anexo}.
+  \item \textbf{addReminderIntentHandler.} Implementa la funcionalidad para la intención addReminderIntent, la cuál permite crear un recordatorio para la fecha de entrega de la investigación, tal como se muestra en el anexo \ref{A12Anexo}.
+  \item \textbf{omitIntentHandler.} Implementa la funcionalidad para la intención omitIntent, la cuál permite saltar la programación de un recordatorio, dando un resumen sobre la información recopilada durante la investigación, así como dar consejos para crear un producto final con la información recuperada. Este handler finaliza la ejecución de la skill, tal como se muestra en el anexo \ref{A13Anexo}.
+  \item \textbf{lastRequestIntentHandler.} Implementa la funcionalidad para la intención lastRequestIntent, la cuál permite al usuario saber cuál fue la respuesta de la última solicitud hecha en la skill. Lanza como respuesta la última oración dada por la skill, tal como se muestra en el anexo \ref{A14Anexo}.
+\end{itemize}
+
+%------------------------------------------------------------
+%	Evaluación de la skill
+%------------------------------------------------------------
+
+\section{Evaluación de la skill}
+\label{EvaluacionSkillcapIV}
+
+La evaluación es una de las etapas del proceso iterativo del diseño centrado en el usuario, el cual consiste en realizar una serie de pruebas con distintas herramientas, con el fin de identificar los posibles problemas durante el manejo de un producto. Por otra parte, se logran identificar procedimientos, limitaciones y problemas en el diseño. En este apartado se detallan las herramientas usadas para aplicar la evaluación a la skill Buscador Gavilán, así como sus resultados.
+
+%------------------------------------------------------------
+%	Herramientas del proceso de evaluación de la skill y pruebas con usuarios
+%------------------------------------------------------------
+
+\subsection{Herramientas del proceso de evaluación de la skill y pruebas con usuarios}
+\label{HerramientasEvaluacionPruebasUsuarioscapIV}
+
+Para aplicar las pruebas, se toma como base el proceso de evaluación del grupo ESIE con cinco usuarios. Este proceso de evaluación se divide en tres fases principales: en la primera fase, un anfitrión o anfitriones dan la bienvenida a los usuarios y se obtiene información relevante sobre el usuario. A continuación se presentan las herramientas utilizadas en está etapa:
+
+\begin{itemize}
+  \item \textbf{Cuestionario de entrada.} Tiene como propósito, conocer información relacionada a los intereses o tipos de dispositivos que usa el usuario. Esta información resulta útil para conocer la experiencia del usuario frente al funcionamiento de la skill. En el anexo \ref{B1Anexo} se muestra el cuestionario de entrada aplicado.
+\end{itemize}
+
+En la segunda fase, uno de los anfitriones lee un protocolo de bienvenida. Posteriormente, indica una serie de actividades que deben ser completadas por los usuarios. Mientras el usuario realiza las pruebas, un observador registra notas y resultados relevantes de cada actividad realizada por los usuarios.
+
+\begin{itemize}
+  \item \textbf{Protocolo de bienvenida.} El objetivo de este documento es presentar los objetivos de la evaluación, en este caso, evaluar la usabilidad de la skill Buscador Gavilán. En el anexo \ref{B2Anexo} se puede consultar el protocolo de bienvenida aplicado.
+  \item \textbf{Actividades de la prueba.} Es una herramienta que define el listado de actividades que debe realizar un usuario. En el anexo \ref{B3Anexo} se presentan las actividades de la prueba aplicadas.
+  \item \textbf{Guión de actividades para la evaluación.} Dada la dificultad para dar a conocer las actividades por voz a través de un anfitrión, las actividades se presentaron en un documento externo, donde se definen las actividades que puede realizar un usuario. En el anexo \ref{B4Anexo} se puede consultar el listado de actividades de la evaluación.
+\end{itemize}
+
+En la tercera y última fase de la evaluación, los usuarios responden algunos cuestionarios que permiten conocer la usabilidad y la experiencia al utilizar la skill.
+
+\begin{itemize}
+  \item \textbf{Cuestionario de usabilidad.} Este cuestionario contiene reactivos específicos para determinar la usabilidad de la skill Buscador Gavilán. El cuestionario de usabilidad aplicado se muestra en el anexo \ref{B5Anexo}.
+  \item \textbf{Cuestionario de percepción subjetiva.} Este cuestionario ayuda a identificar particularidades de la interfaz respecto a la interfaz de usuario. El cuestionario de percepción subjetiva aplicado se muestra en el anexo \ref{B6Anexo}.
+\end{itemize}
+
+%------------------------------------------------------------
+%	Evaluación con usuarios
+%------------------------------------------------------------
+
+\subsection{Evaluación con usuarios}
+\label{EvaluacionUsuarioscapIV}
+
+Con el fin de evaluar la usabilidad de la skill Buscador Gavilán de forma virtual, debido al confinamiento del COVID-19, se hicieron algunos ajustes a la aplicación del proceso de evaluación del grupo ESIE, además de ajustarlo para aplicarse a las características de una interfaz basada en reconocimiento por voz.
+
+En el proceso de evaluación del grupo ESIE convencional, el moderador ordena una serie de actividades una a una. Para la evaluación de la skill, el moderador realizó una presentación con todas las funcionalidades posibles de la skill. Esta presentación ayudó a que los usuarios conocieran la interacción con la skill, con el fin de que el moderador no interviniera durante la interacción.
+
+El segundo reto fue adaptar la forma de aplicar la evaluación a una modalidad virtual por medio de una reunión en la plataforma Zoom, en la que se encontraban conectados en línea al menos cuatro dispositivos, cada uno con una funcionalidad específica para poder llevar a cabo la evaluación.
+
+\begin{enumerate}
+  \item Un dispositivo con cámara activada para el moderador.
+  \item Un dispositivo para el usuario.
+  \item Un dispositivo que mostraba en cámara un dispositivo Echo Dot con la skill Buscador Gavilán instalada.
+  \item Un dispositivo con cámara desactivada para el observador.
+\end{enumerate}
+
+En la figura \ref{fig:424} se muestra una de las evaluaciones con los usuarios en las que se encuentran los cuatro dispositivos mencionados anteriormente.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.70\textwidth]{Cap4/Figuras/Pruebas usuario 1.png}
+  \caption{Evaluación de la skill Buscador Gavilán con un usuario.}
+  \label{fig:424}
+\end{figure}
+
+El proceso de evaluación con cada uno de los usuarios siguió las tres fases principales del proceso de evaluación del grupo ESIE.
+
+En la primera fase, para aplicar el cuestionario de entrada, se envió previamente a la reunión en Zoom, el formulario con los reactivos del cuestionario de entrada por medio de un formulario en Google Forms.
+
+En la segunda fase, se instaló un micrófono y una bocina con el dispositivo Echo Dot, con el fin de tener una mejor transmisión de sonido de entrada y salida en la plataforma Zoom. A su vez, cada una de las reuniones fue grabada con el consentimiento del usuario.
+
+Durante la segunda etapa, el monitor leyó la carta de bienvenida con las reglas a seguir y los objetivos de la evaluación. Posteriormente, el moderador mostró un video a los usuarios, en el que se mostró cómo interactuar con Alexa, así como dar a conocer la definición de una skill y activarlas para ejecutar su funcionamiento. Finalmente, el moderador presentó a los usuarios una presentación con las funciones que la skill puede realizar, en la que se le solicitó interactuar de forma libre, realizando las tareas definidas en el listado de funciones.
+
+Es importante mencionar, que dada la interacción libre de los usuarios con la skill, algunas actividades no fueron realizadas. Finalmente, el observador fue marcando las actividades que fueron realizadas exitosamente, las actividades que trataron de realizarse pero no fueron completadas, y las actividades que no fueron realizadas. Estos resultados se registraron en el documento llamado actividades de la prueba.
+
+Finalmente, en la tercera y última fase del proceso, se solicitó a los usuarios responder los cuestionarios de usabilidad y de percepción subjetiva, la cual cuenta con una sección de comentarios generales sobre la opinión de los usuarios sobre la skill.
+
+%------------------------------------------------------------
+%	Resultados y análisis de usabilidad de la skill
+%------------------------------------------------------------
+
+\subsection{Resultados y análisis de usabilidad de la skill}
+\label{ResultadosAnalisisUsabilidadcapIV}
+
+Los resultados obtenidos de cada una de las herramientas del proceso de evaluación brinda información relevante sobre los usuarios y sobre el manejo de la skill.
+
+%------------------------------------------------------------
+%	Cuestionario de entrada
+%------------------------------------------------------------
+
+\subsubsection{Cuestionario de entrada}
+\label{CuestionarioEntradacapIV}
+
+A continuación se presentan los resultados más relevantes del cuestionario de entrada.
+
+\begin{itemize}
+  \item La fuente de información más consultada es la Internet. Todos los usuarios que participaron en la prueba utilizan está fuente para sus investigaciones.
+  \item El 60\% de los usuarios realiza búsquedas de temas de interés personal y el 40\% realiza investigación con propósito académico.
+  \item El 40\% de los usuarios casi nunca incluye las referencias utilizadas en la investigación. Otro 40\% sólo las incluye frecuentemente. Algunos usuarios señalan que no agregan las referencias porque el profesor no lo solicita, no lo consideran necesario o porque no es una investigación formal.  
+  \item El 60\% de los estudiantes considera que la información que obtienen al final de una investigación es buena.
+  \item Las fuentes de información que son más utilizadas por los usuarios son YouTube y Google con un 80\%. Los segundos recursos más utilizados son Wikipedia y revistas científicas con un 60\%.
+  \item El 80\% de los usuarios no sigue ningún método de investigación. El usuario que aplica un método de investigación, utiliza el método práctico y teórico aprendido en una clase de sociología.
+  \item Por otra parte, el Modelo Gavilán es una estrategia de búsqueda de información que tampoco es conocida por ninguno de los usuarios involucrados.
+  \item Todos los usuarios saben qué es un asistente basado en voz. Los asistentes por voz más usados son Google Assistant y Siri, con un 80\%, seguido de Alexa con un 60\%.
+  \item A pesar de saber qué son los asistentes basados en voz, sólo el 80\% de los usuarios ha utilizado alguno.
+  \item Las funcionalidades más usadas al utilizar un asistente basado en voz se muestran a continuación en la figura \ref{fig:425}.
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.70\textwidth]{Cap4/Figuras/Funcionalidades más usadas.png}
+    \caption{Funcionalidades más usadas al utilizar un asistente basado en voz.}
+    \label{fig:425}
+  \end{figure}
+  \item Ninguno de los usuarios sabe lo que es una skill de Alexa.
+  \item Todos los usuarios se sienten cómodos usando un asistente basado en voz.
+  \item Todos los usuarios consideran que un asistente basado en voz podría ayudar en el proceso de investigación y búsqueda de información, ya que consideran que podría facilitar las búsquedas en internet, puede recomendar páginas que pueden ser útiles, tienen muchas respuestas, mejoraría la eficiencia en tiempo y podría ser más práctico cuando se están realizando más actividades al mismo tiempo.
+\end{itemize}
+
+%------------------------------------------------------------
+%	Actividades de la prueba
+%------------------------------------------------------------
+
+\subsubsection{Actividades de la prueba}
+\label{ActividadesPruebacapIV}
+
+En la tabla siguiente se muestran los resultados de las actividades de la prueba en la tabla \ref{tab:t43}.
+
+\begin{table}[t]
+  \begin{center}
+    \begin{tabular}{ | p{7cm} | p{3cm} | p{3cm} | p{3cm} | }
+      \hline
+       & Usuarios que realizaron la actividad & Usuarios que intentaron realizar la actividad sin éxito & Usuarios que no realizaron la actividad \\ \hline
+      Activa la skill & 3 & 2 & 0 \\ \hline
+      Solicita a la skill investigar sobre el tema de matemáticas & 1 & 4 & 0 \\ \hline
+      Solicita a Alexa que te sugiera una nueva pregunta inicial & 2 & 0 & 3 \\ \hline
+      Solicita a Alexa que utilice la pregunta inicial sugerida & 4 & 0 & 1 \\ \hline
+      Solicita a Alexa que te recomiende otra referencia & 2 & 1 & 2 \\ \hline
+      Solicita a Alexa que utilice la referencia propuesta & 3 & 1 & 1 \\ \hline
+      Solicita a la skill más información del tema & 4 & 0 & 1 \\ \hline
+      Solicita a la skill buscar otra referencia & 4 & 0 & 1 \\ \hline
+      Solicita a Alexa que almacene la referencia de la información & 4 & 0 & 1 \\ \hline
+      Solicita a Alexa que continúe con la investigación & 3 & 0 & 1 \\ \hline
+      Solicita a Alexa finalizar con la investigación & 2 & 0 & 3 \\ \hline
+      Solicita a la skill que programe un recordatorio para el 10 diciembre & 4 & 0 & 1 \\ \hline
+    \end{tabular}
+    \caption{Resultados de las activiades de la prueba.}
+    \label{tab:t43}
+  \end{center}
+\end{table}
+
+Los resultados obtenidos en las actividades de la prueba se comparan con las hipótesis de cada una de las tareas, en las que se define por cada una la hipótesis, la acción a desarrollar, el tiempo estimado para realizar la tarea y el resultado de la prueba, en donde se define si se cumplió satisfactoriamente o no la hipótesis. Estos resultaos se muestran en la tabla \ref{tab:t44}
+
+\begin{table}[t]
+  \begin{center}
+    \begin{tabular}{ | p{3cm} | p{3cm} | p{3cm} | p{2cm} | p{4cm} | }
+      \hline
+      HIPÓTESIS & TAREA & DESARROLLO DE TAREA & TIEMPO ESTIMADO & RESULTADO \\ \hline
+      El usuario conoce el comando de activación de la skill. & Activar la skill & Activa la skill & A lo más 20 segundos & Se cumplió la hipótesis \\ \hline
+      El usuario es capaz de iniciar la investigación sobre matemáticas & Iniciar la investigación sobre matemáticas & Solicita a la skill investigar sobre el tema de matemáticas & A lo más 50 segundos & Se cumplió la hipótesis pero se identificó que los usuarios intentaron utilizar otras palabras asociadas al intent \\ \hline
+      El usuario puede buscar otra propuesta de pregunta inicial & Buscar otra pregunta inicial a la pregunta propuesta & Solicita a Alexa que te sugiera una nueva pregunta inicial & A lo más 40 segundos & Se cumplió la hipótesis. Los intents propuestos no se usaron en las evaluaciones ya que el usuario interactuaba con “si” y “no” \\ \hline
+      El usuario acepta la pregunta sugerida para la investigación & Elegir la pregunta propuesta como pregunta inicial para la investigación sobre música & Solicita a Alexa que utilice la pregunta inicial sugerida & A lo más 40 segundos & Se cumplió la hipótesis. Los intents propuestos no se usaron en las evaluaciones ya que el usuario interactuaba con “si” y “no” \\ \hline
+      El usuario solicita otra sugerencia para las referencias & Buscar otra referencia propuesta a la primera propuesta por la skill & Solicita a Alexa que te recomiende otra referencia & A lo más 40 segundos & Se cumplió la hipótesis. Los intents propuestos no se usaron en las evaluaciones ya que el usuario interactuaba con “si” y “no” \\ \hline
+      El usuario elige una referencia propuesta por la skill & Elegir la referencia propuesta por la skill & Solicita a Alexa que utilice la referencia propuesta & A lo más 40 segundos & Se cumplió la hipótesis. Los intents propuestos no se usaron en las evaluaciones ya que el usuario interactuaba con “si” y “no” \\ \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+
+\begin{table}[t]
+  \begin{center}
+    \begin{tabular}{ | p{3cm} | p{3cm} | p{3cm} | p{2cm} | p{4cm} | }
+      \hline
+      El usuario extiende la información de una búsqueda & Solicitar a la skill leer otro párrafo & Solicita a la skill más información del tema & A lo más 40 segundos & 
+      Medianamente cumplida. Hay dudas en cómo pedir la extensión de información, no es clara la manera en que se puede formular la solicitud, se esperaba que diera otra información distinta, es parecido a buscar otra pregunta y no queda muy clara la funcionalidad.
+
+      Se propone cambiar la propuesta de extensión de información : Puedes decir “más información” para escuchar más de esta referencia \\ \hline
+      El usuario termina la revisión de la referencia actual & Solicitar a la skill seguir consultar otra referencia & Solicita a la skill buscar otra referencia & A lo más 40 segundos & No se cumplió la hipótesis. Hay confusión entre la diferencia de terminar la búsqueda de referencias y la búsqueda de información \\ \hline
+      El usuario guarda la referencia de la información investigada & Solicitar a la skill guardar una referencia & Solicita a Alexa que almacene la referencia de la información & A lo más 40 segundos & Se cumplió la hipótesis \\ \hline
+      El usuario continúa el proceso de selección de fuentes & Solicitar a la skill continuar con la investigación & Solicita a Alexa que continúe con la investigación & A lo más 40 segundos & No se cumplió la hipótesis. Es confuso el concepto de terminar la investigación y varios de los usuarios no llegan a este punto \\ \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+
+\begin{table}[t]
+  \begin{center}
+    \begin{tabular}{ | p{3cm} | p{3cm} | p{3cm} | p{2cm} | p{4cm} | }
+      \hline
+      El usuario finaliza el proceso de selección de fuentes & Solicitar a la skill que termine la investigación & Solicita a Alexa finalizar con la investigación & A lo más 40 segundos & No se cumplió la hipótesis. Este paso se salta y es confusa la diferencia entre terminar la selección de fuentes y terminar la investigación \\ \hline
+      El usuario agrega un recordatorio sobre la entrega de la investigación & Solicitar a la skill que agregue un recordatorio & Solicita a la skill que programe un recordatorio para el 10 diciembre & A lo más 40 segundos & Se cumplió medianamente \\ \hline
+      El usuario cierra la skill & Solicitar a la skill que se cierre & Solicita a Alexa salir de la skill & A lo más 40 segundos & No se cumplió la hipótesis. Una vez terminada la interacción el usuario ya no sabe qué más hacer y la skill repite la última información dicha hasta que se desactiva automáticamente. \\ \hline
+    \end{tabular}
+    \caption{Hipótesis y resultados de las actividades de la prueba.}
+    \label{tab:t44}
+  \end{center}
+\end{table}
+
+%------------------------------------------------------------
+%	Cuestionario de usabilidad
+%------------------------------------------------------------
+
+\subsubsection{Cuestionario de usabilidad}
+\label{CuestionarioUsabilidadcapIV}
+
+Los resultados de usabilidad son tomados para aplicar los pasos definidos en el cuestionario de evaluación del cuestionario de usabilidad SUS, en el cuál, a los resultados con actitud positiva se les resta una unidad, mientras que a las respuestas con carácter negativo, se le resta el valor obtenido en el cuestionario a cinco.
+
+Realizando el cálculo mencionado anteriormente, se obtuvieron los siguientes resultados por usuarios, mostrado en la tabla \ref{tab:t45}.
+
+\begin{table}[t]
+  \begin{center}
+    \begin{tabular}{ | p{9cm} | p{1cm} | p{1cm} | p{1cm} | p{1cm} | p{1cm} | }
+      \hline
+      Usuario & 1 & 2 & 3 & 4 & 5 \\ \hline
+      Creo que me gustaría usar la skill frecuentemente & 1 & 3 & 4 & 3 & 4 \\ \hline
+      Encuentro la skill compleja & 3 & 2 & 4 & 2 & 3 \\ \hline
+      Pienso que la skill es fácil de usar & 0 & 1 & 4 & 3 & 3 \\ \hline
+      Creo que necesitaré la ayuda de un técnico para usar la skill & 4 & 4 & 4 & 3 & 4 \\ \hline
+      Encontré que las distintas funciones de la skill estaban bien integrados & 2 & 1 & 3 & 3 & 3 \\ \hline
+      Pienso que había mucha inconsistencia en la skill & 1 & 2 & 4 & 3 & 3 \\ \hline
+      Me imagino que la gente aprenderá a usar la skill bastante rápido & 2 & 4 & 4 & 4 & 4 \\ \hline
+      Encuentro la skill engorrosa de usar & 1 & 0 & 4 & 3 & 3 \\ \hline
+      Me sentí muy seguro usando la skill & 0 & 1 & 4 & 3 & 4 \\ \hline
+      Necesito aprender muchas cosas antes de poder utilizar la skill & 3 & 4 & 4 & 3 & 4 \\ \hline
+      Suma & 17 & 22 & 39 & 30 & 35 \\ \hline
+      Multiplicación por 2.5 & \textbf{42.5} & \textbf{55} & \textbf{97.5} & \textbf{75} & \textbf{87.5} \\ \hline
+    \end{tabular}
+    \caption{Resultados del cuestionario de usabilidad.}
+    \label{tab:t45}
+  \end{center}
+\end{table}
+
+La suma de los resultados definidos por SUS, está dada por la siguiente operación:
+
+42.5 + 55 + 97.5 + 75 + 87.5 = 357.5
+
+A este resultado se le obtiene el promedio, que en este caso constó de cinco usuarios:
+
+357.5 / 5 = 71.5
+
+Tomando como referencia la puntuación definida por SUS, este resultado se encuentra en una escala donde la usabilidad de la skill Buscador Gavilán se considera buena.
+
+%------------------------------------------------------------
+%	Cuestionario de percepción subjetiva
+%------------------------------------------------------------
+
+\subsubsection{Cuestionario de percepción subjetiva}
+\label{CuestionarioPercepcionSubjetivacapIV}
+
+Se presentan los resultados en los que se muestra mayor tendencia de los reactivos de percepción subjetiva.
+
+En una escala de 1 (aburrida) a 9 (estimulante), la skill tiende a ser estimulante. Resultados mostrados en la figura \ref{fig:426}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.70\textwidth]{Cap4/Figuras/PercepciónSubjetiva1.png}
+  \caption{Resultados de percepción subjetiva 1.}
+  \label{fig:426}
+\end{figure}
+
+En una escala de 1 (difícil) a 9 (fácil) para recordar los nombres y funcionalidades de la skill, esta tiende a ser fácil de recordar. Resultados mostrados en la figura \ref{fig:427}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.70\textwidth]{Cap4/Figuras/PercepciónSubjetiva2.png}
+  \caption{Resultados de percepción subjetiva 2.}
+  \label{fig:427}
+\end{figure}
+
+En una escala de 1 (inadecuada) a 9 (adecuada), la cantidad de ayuda ofrecida por la skill tiende a ser adecuada. Resultados mostrados en la figura \ref{fig:428}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.70\textwidth]{Cap4/Figuras/PercepciónSubjetiva3.png}
+  \caption{Resultados de percepción subjetiva 3.}
+  \label{fig:428}
+\end{figure}
+
+En una escala de 1 (confusos) a 9 (claros), los mensajes de las instrucciones sobre las actividades que puede realizar una skill tienden a ser claros. Resultados mostrados en la figura \ref{fig:429}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.70\textwidth]{Cap4/Figuras/PercepciónSubjetiva4.png}
+  \caption{Resultados de percepción subjetiva 4.}
+  \label{fig:429}
+\end{figure}
+
+En una escala de 1 (confusos) a 9 (claros), los mensajes de error tienden a ser claros. Resultados mostrados en la figura \ref{fig:430}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.70\textwidth]{Cap4/Figuras/PercepciónSubjetiva5.png}
+  \caption{Resultados de percepción subjetiva 5.}
+  \label{fig:430}
+\end{figure}
+
+En una escala de 1 (poco) a 9 (mucho), la skill tiende a ser demasiado innovadora. Resultados mostrados en la figura \ref{fig:431}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.70\textwidth]{Cap4/Figuras/PercepciónSubjetiva6.png}
+  \caption{Resultados de percepción subjetiva 6.}
+  \label{fig:431}
+\end{figure}
+
+Comentarios de los usuarios sobre la skill:
+
+\begin{itemize}
+  \item Que me haga caso.
+  \item Skill es fácil de usar una vez que le encuentras la forma, me agrada que sea clara y precisa. Que de sugerencias y busque aprobación de las páginas antes de dar la información de dichas. Lo único que me gustaría es que al detectar errores pudiera decir cómo es que espera la respuesta o por qué surgió el error. De ahí en fuera me agrada el funcionamiento.
+  \item Faltaría la traducción de las páginas en inglés para que las diga en español.
+  \item Lo único que no supe es que como era que me dejara de dar referencias o ya no continuará leyendo el siguiente párrafo, y cuando hacía un recordatorio, decía sobre un error y luego decía que si estaba el recordatorio.
+\end{itemize}
+
+%------------------------------------------------------------
+%	Resumen
+%------------------------------------------------------------
+
+\section{Resumen}
+\label{ResumencapIV}
+
+En este capítulo se describen y presentan los conceptos más generales involucrados en el desarrollo de una skill, tal como el Alexa Skills Kit, que es un conjunto de herramientas para desarrollar skills; la consola de desarrollo de Alexa, la cual brinda un entorno para desarrollar las skills; invocaciones, que son las formas en que se puede activar una skill; las intenciones, que son las funcionalidades que puede realizar una skill; declaraciones, que es un conjunto de frases que pueden invocar una intención;  slots, que fungen como parámetros en las declaraciones para brindar información específica; función lambda, que es el entorno en que se desarrolla todo el código para el funcionamiento de la skill; y el simulador de Alexa, que permite probar la skill de forma interactiva.
+
+Posteriormente, se identifica el problema a tratar a partir del análisis del problema, donde se presentan una serie de problemas del proceso de investigación y búsqueda de información de alumnos de entre 15 y 21 años. Así mismo, se compara el proceso de investigación que realizan los alumnos, con el proceso de búsqueda de información sugerido por las etapas del Modelo Gavilán.
+
+Dada la información encontrada en el proceso de análisis del problema, se realizan herramientas para el diseño de la skill Buscador Gavilán, enfocada a la metodología basada en el diseño centrado en el usuario. Se desarrollaron herramientas como el modelo Persona, el Customer Journey Map y una adaptación del Modelo Gavilán. Estos documentos permiten la creación de herramientas enfocadas al diseño técnico de la skill, tales como un story board y un diagrama de navegación.
+
+Consecutivamente, se describen todos los aspectos considerados durante la implementación de la skill, tal como las invocaciones, intenciones, declaraciones, slots, handlers, entre otros datos como las tecnologías utilizadas como apoyo para el correcto funcionamiento, como el Custom Search JSON API y el Web Scraping.
+
+Finalmente se presenta un apartado donde se muestran las pruebas realizadas con los usuarios y los resultados del proceso de evaluación de usabilidad de la skill. Con esta evaluación se identifican algunos problemas, en los que se propone una solución para mejorar la interacción de la skill con los usuarios.
