@@ -65,7 +65,7 @@ Posteriormente se mencionan conceptos importantes de las interfaces de usuario, 
 
 La skill se basa en una metodología basada en el diseño centrado en el usuario, por lo que se desarrolla detalladamente el proceso iterativo de está metodología de diseño para desarrollar un producto o servicio. Está metodología se basa en algunas herramientas para entender de una forma más cercana a los usuarios, entre las que se encuentra el modelo Persona y el Customer Journey Map. El modelo Persona consiste en describir un usuario modelo que podría hacer uso del servicio o producto en desarrollo. Por otro lado, el Customer Journey Map permite examinar y analizar la historia o pasos de cómo un usuario realiza algún proceso específico.
 
-Seguido de estas definiciones de conceptos, se presenta una forma de realizar evaluaciones sobre la usabilidad de un producto con herramientas para realizar pruebas con usuarios. Primeramente se desarrolla el concepto de usabilidad, así como su definición y sus características. Para la evaluación, se utiliza el proceso de evaluación del grupo ESIE, el cuál se compone de tres etapas principales, en las que se describe por cada una los pasos que se siguen y las herramientas de evaluación aplicadas. Principalmente, sobresale el cuestionario de evaluación SUS, el cuál permite evaluar la usabilidad de un sistema.
+Seguido de estas definiciones de conceptos, se presenta una forma de realizar evaluaciones sobre la usabilidad de un producto con herramientas para realizar pruebas con usuarios. Primeramente, se desarrolla el concepto de usabilidad, así como su definición y sus características. Para la evaluación, se utiliza el proceso de evaluación del grupo ESIE, el cuál se compone de tres etapas principales, en las que se describe por cada una los pasos que se siguen y las herramientas de evaluación aplicadas. Principalmente, sobresale el cuestionario de evaluación SUS, el cuál permite evaluar la usabilidad de un sistema.
 
 Durante el desarrollo de la skill, se definen los conceptos necesarios para el desarrollo de una skill en Alexa, entre los que sobresale el Alexa Skills Kit (ASK), los modelos de interacción de las skills, los tipos de skill y el flujo de desarrollo de una Skill. Dentro del ASK, existe la consola de desarrollo de Alexa, la cual permite crear skills siguiendo el flujo de creación propuesto por el equipo de desarrollo de Alexa. La consola permite definir los componentes sobresalientes para crear una skill, tal como las invocaciones (invocation name), intenciones (intents), declaraciones (utterances), slots, función lambda y el simulador de Alexa.
 
@@ -119,11 +119,13 @@ Así mismo, se describen y resaltan los resultados más sobresalientes de cada u
 \section{Conclusiones}
 \label{ConclusionescapV}
 
-Dados los resultados del cuestionario de usabilidad SUS, la usabilidad de la skill Buscador Gavilán se considera buena. Algunas de las complicaciones que hacen que la usabilidad de la skill no sea excelente, es la complejidad que hay entre la interacción del usuario con el Buscador Gavilán, ya que algunos de los usuarios no habían tenido familiaridad previa con un asistente basado en reconocimiento por voz, o en su defecto, no habían utilizado alguna skill para resolver problemas específicos de forma personalizada.
+Es importante destacar la información resultante de las herramientas que se crearon para conocer el proceso de búsqueda de información que aplican los alumnos, ya que son datos útiles para atacar los puntos de oportunidad donde los alumnos tienen mayor dificultad para investigar. Estos puntos de oportunidad toman relevancia, pues se toman en consideración para evaluar con el apoyo del cuestionario de usabilidad SUS y el cuestionario de percepción subjetiva.
+
+A lo que respecta a los resultados del cuestionario de usabilidad SUS, la usabilidad de la skill Buscador Gavilán se considera buena. Algunas de las complicaciones que hacen que la usabilidad de la skill no sea excelente, es la complejidad que hay entre la interacción del usuario con el Buscador Gavilán, ya que algunos de los usuarios no habían tenido familiaridad previa con un asistente basado en reconocimiento por voz, o en su defecto, no habían utilizado alguna skill para resolver problemas específicos de forma personalizada.
 
 Además, se encontraron puntos específicos de mejora para la interacción y el diálogo entre la skill y el usuario, en el cual, se comunica la forma de uso de la skill de una manera más clara y natural para el usuario.
 
-A partir de los resultados del cuestionario de percepción subjetiva, se observa que el uso de la skill es estimulante, permite recordar nombres y funcionalidades fácilmente, los mensajes que proporciona la skill en general son claros, y tiende a ser una forma innovadora de abordar las dificultades del análisis del problema.
+Dados los resultados del cuestionario de percepción subjetiva, se observa que el uso de la skill es estimulante, permite recordar nombres y funcionalidades fácilmente, los mensajes que proporciona la skill en general son claros, y tiende a ser una forma innovadora de abordar las dificultades del análisis del problema.
 
 Por otra parte, las observaciones y los comentarios de los usuarios, permitieron realizar ajustes y mejoras a los puntos en los hubo dificultad para realizar alguna de las tareas propuestas en la evaluación. Algunas mejoras sobresalientes en la skill fue el rediseño de diálogos para tener mayor claridad con las instrucciones de manejo de la skill, así como mejoras en los diálogos de ayuda con las intenciones lastRequestIntent, AMAZON.HelpIntent y los handlers lastRequestIntentHandler y HelpIntentHandler, respectivamente.
 
@@ -138,7 +140,7 @@ Las interfaces basadas en reconocimiento por voz son un tipo de interfaces multi
 
 La consola de desarrollo de Alexa permite integrar otras formas de comunicación, además de la interacción por voz, tales como ayudas visuales como videos, imágenes, animaciones e incluso audio personalizado, con el fin de brindar una experiencia más completa a los usuarios que utilizan una skill. Estas funcionalidades se pueden encontrar en la sección de construcción, en el apartado llamado Multimodal Responses, tal como se muestra en la figura \ref{fig:51}.
 
-\begin{figure}
+\begin{figure}[H]
   \centering
   \includegraphics[width=0.70\textwidth]{Cap5/Figuras/AlexaMultimodalResponses.png}
   \caption{Interfaces con respuestas multimodales en la consola de desarrollo de Alexa.}
@@ -151,54 +153,54 @@ Algunos prototipos de la interacción multimodal con el Buscador Gavilán se pre
 
 En la figura \ref{fig:52} se muestra una propuesta para la bienvenida a la skill, una vez que es activado el LaunchRequestHandler a partir de uno de los comandos de activación de la skill.
 
-\begin{figure}
+\begin{figure}[H]
   \centering
-  \includegraphics[width=0.70\textwidth]{Cap5/Figuras/Multimodal1.png}
+  \includegraphics[width=0.60\textwidth]{Cap5/Figuras/Multimodal1.png}
   \caption{Respuesta multimodal de bienvenida al Buscador Gavilán.}
   \label{fig:52}
 \end{figure}
 
 En la figura \ref{fig:53} se muestra una propuesta para el listado de preguntas sugeridas para elegir una pregunta inicial.
 
-\begin{figure}
+\begin{figure}[H]
   \centering
-  \includegraphics[width=0.70\textwidth]{Cap5/Figuras/Multimodal2.png}
+  \includegraphics[width=0.60\textwidth]{Cap5/Figuras/Multimodal2.png}
   \caption{Respuesta multimodal para el listado de preguntas sugeridas del Buscador Gavilán.}
   \label{fig:53}
 \end{figure}
 
 En la figura \ref{fig:54} se muestra una propuesta para el listado de fuentes de información con el dominio del cual se consulta la información.
 
-\begin{figure}
+\begin{figure}[H]
   \centering
-  \includegraphics[width=0.70\textwidth]{Cap5/Figuras/Multimodal3.png}
+  \includegraphics[width=0.60\textwidth]{Cap5/Figuras/Multimodal3.png}
   \caption{Respuesta multimodal para el listado de fuentes de información del Buscador Gavilán.}
   \label{fig:54}
 \end{figure}
 
 En la figura \ref{fig:55} se muestra una propuesta para mostrar la información contenida en alguna de las fuentes de información elegida por el usuario.
 
-\begin{figure}
+\begin{figure}[H]
   \centering
-  \includegraphics[width=0.70\textwidth]{Cap5/Figuras/Multimodal4.png}
+  \includegraphics[width=0.60\textwidth]{Cap5/Figuras/Multimodal4.png}
   \caption{Respuesta multimodal para mostrar contenido de una fuente de información elegida.}
   \label{fig:55}
 \end{figure}
 
 En la figura \ref{fig:56} se muestra una propuesta para mostrar al usuario las sugerencias generales para incorporar en la investigación final, así como brindarle la posibilidad de integrar un recordatorio.
 
-\begin{figure}
+\begin{figure}[H]
   \centering
-  \includegraphics[width=0.70\textwidth]{Cap5/Figuras/Multimodal5.png}
+  \includegraphics[width=0.60\textwidth]{Cap5/Figuras/Multimodal5.png}
   \caption{Respuesta multimodal para sugerir recomendaciones al usuario.}
   \label{fig:56}
 \end{figure}
 
 En la figura \ref{fig:57} se muestra una propuesta para mostrar las recomendaciones para representar la información de la investigación final, así como la despedida de la skill.
 
-\begin{figure}
+\begin{figure}[H]
   \centering
-  \includegraphics[width=0.70\textwidth]{Cap5/Figuras/Multimodal6.png}
+  \includegraphics[width=0.60\textwidth]{Cap5/Figuras/Multimodal6.png}
   \caption{Respuesta multimodal para sugerir herramientas de representación de información.}
   \label{fig:57}
 \end{figure}
