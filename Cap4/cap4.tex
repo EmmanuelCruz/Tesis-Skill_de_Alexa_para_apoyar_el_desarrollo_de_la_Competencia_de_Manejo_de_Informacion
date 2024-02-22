@@ -46,7 +46,7 @@ Dados los resultados obtenidos de todo el proceso de diseño, se logró una vers
 \label{AlexacapIV}
 
 % REFERENCIA
-Amazon (2022a), señala que Alexa es el servicio de voz de la compañía Amazon, disponible para los dispositivos de Amazon, tales como Amazon Echo, Echo Dot y Echo Show, así como dispositivos tercios con Alexa integrada. Por medio del servicio de Alexa, se crean capacidades y habilidades más personalizadas para los usuarios, llamadas skills. Alexa es un servicio que funciona por el reconocimiento por voz, de tal forma que cuando un usuario emite un algún sonido o comando por voz, Alexa procesa la entrada y da una respuesta acorde a la información solicitada.
+Amazon (2022a), señala que Alexa es el servicio de voz de la compañía Amazon, disponible para los dispositivos de Amazon, tales como Amazon Echo, Echo Dot, Echo Pop y Echo Show, así como dispositivos terciarios con Alexa integrada. Por medio del servicio de Alexa, se crean capacidades y habilidades más personalizadas para los usuarios, llamadas skills. Alexa es un servicio que funciona por el reconocimiento por voz, de tal forma que cuando un usuario emite un algún sonido o comando por voz, Alexa procesa la entrada y da una respuesta acorde a la información solicitada.
 
 % REFERENCIA
 Amazon (2022b) señala que el servicio Alexa Voice Service (AVS) provee todas las herramientas para poder integrar de forma correcta el servicio de reconocimiento por voz de Amazon. La documentación del servicio AVS provee los documentos para el desarrollo e identificación de requerimientos del producto, así como guías especializadas para desarrolladores.
@@ -106,8 +106,8 @@ Las skills necesitan una palabra o comando para poder activarse. Un usuario pued
 
 En la figura \ref{fig:41} se muestra el flujo de procesamiento para invocar una skill con Alexa.
 
-% \begin{figure}[h]
-\begin{figure}
+\begin{figure}[H]
+% \begin{figure}
   \centering
   \includegraphics[width=0.70\textwidth]{Cap4/Figuras/ProcesoInvocacionSkill.png}
   \caption{Flujo de procesamiento de activación por voz para invocar una skill. Amazon (2022d).}
@@ -180,7 +180,7 @@ Las skills que pueden ser desarrolladas tienen una clasificación definida por e
 
 La tabla \ref{tab:t41} describe los distintos tipos de skills, así como su enfoque.
 
-\begin{table}
+\begin{table}[H]
   \begin{center}
     \begin{tabular}{ | p{4cm} | p{4cm} | p{8cm} | }
       \hline
@@ -226,8 +226,8 @@ Amazon (2022d) señala que el desarrollo de cualquier tipo de skill sigue un pro
 
 Este proceso se sigue como en la figura \ref{fig:42}.
 
-% \begin{figure}[h]
-\begin{figure}
+\begin{figure}[H]
+% \begin{figure}
   \centering
   \includegraphics[width=0.70\textwidth]{Cap4/Figuras/Flujo de creación de skill.jpg}
   \caption{Flujo de creación de una skill. Amazon (2022d).}
@@ -255,10 +255,10 @@ La consola de desarrollo de Skills se divide en cinco secciones:
 
 Estas opciones se encuentran en la presentación de la consola de desarrollo de Alexa, tal como se muestra en la figura \ref{fig:43}.
 
-% \begin{figure}[h]
-\begin{figure}
+\begin{figure}[H]
+% \begin{figure}
   \centering
-  \includegraphics[width=0.70\textwidth]{Cap4/Figuras/Consola de Desarrollo de Alexa.png}
+  \includegraphics[width=0.60\textwidth]{Cap4/Figuras/Consola de Desarrollo de Alexa.png}
   \caption{División de la consola de desarrollo de Alexa.}
   \label{fig:43}
 \end{figure}
@@ -316,10 +316,10 @@ La consola de desarrollo de Amazon también provee el flujo de creación de una 
 
 Estos apartados se encuentran organizados en pestañas dentro de la configuración de una skill, tal como se muestra en la figura \ref{fig:44}.
 
-% \begin{figure}[h]
-\begin{figure}
+\begin{figure}[H]
+% \begin{figure}
   \centering
-  \includegraphics[width=0.70\textwidth]{Cap4/Figuras/Proceso de creacion de skill.png}
+  \includegraphics[width=0.60\textwidth]{Cap4/Figuras/Proceso de creacion de skill.png}
   \caption{Flujo del proceso de creación de skills.}
   \label{fig:44}
 \end{figure}
@@ -336,8 +336,8 @@ Amazon (2022g) una invocación como las diferentes formas en las que se puede ac
 
 Las invocaciones se encuentran dentro de la sección llamada Build, tal como se muestra en la figura \ref{fig:45}.
 
-% \begin{figure}[h]
-\begin{figure}
+\begin{figure}[H]
+% \begin{figure}
   \centering
   \includegraphics[width=0.70\textwidth]{Cap4/Figuras/Invocaciones.png}
   \caption{Definición de invocación o invocaciones de una skill.}
@@ -384,8 +384,8 @@ Las intenciones o intents son definidas por Amazon (2022k) como las funcionalida
 
 La configuración y declaración de intenciones se encuentra dentro de la sección de construcción, tal como se muestra en la figura \ref{fig:46}.
 
-% \begin{figure}[h]
-\begin{figure}
+\begin{figure}[H]
+% \begin{figure}
   \centering
   \includegraphics[width=0.70\textwidth]{Cap4/Figuras/Intenciones.png}
   \caption{Definición de intenciones de una skill.}
@@ -444,8 +444,8 @@ Por otro lado, las intenciones personalizadas son intenciones que se crean manua
 % REFERENCIA
 Amazon (2022h), señala que las declaraciones o utterances son las diferentes frases que activan una intención. Cada intención tiene un apartado para definir las declaraciones como se muestra en la figura \ref{fig:47}.
 
-% \begin{figure}[h]
-\begin{figure}
+\begin{figure}[H]
+% \begin{figure}
   \centering
   \includegraphics[width=0.70\textwidth]{Cap4/Figuras/Declaraciones.png}
   \caption{Definición de declaraciones de una intención de una skill.}
@@ -484,8 +484,8 @@ En donde la variable \textit{nombrePlatillo} corresponde a un valor específico.
 % REFERENCIA
 Amazon (2022h) señala que una declaración se forma de la estructura descrita en la figura \ref{fig:48}.
 
-% \begin{figure}[h]
-\begin{figure}
+\begin{figure}[H]
+% \begin{figure}
   \centering
   \includegraphics[width=0.70\textwidth]{Cap4/Figuras/Estructura de Declaraciones.jpg}
   \caption{Estructura de una declaración o utterance. Amazon (2022h).}
@@ -512,8 +512,8 @@ Como se comentó anteriormente, Amazon (2022i) define los slots como argumentos 
 
 La configuración y definición de los slots usados en las declaraciones de una intención se encuentra en la sección de construcción de una skill, tal como se muestra en la figura \ref{fig:49}.
 
-% \begin{figure}[h]
-\begin{figure}
+\begin{figure}[H]
+% \begin{figure}
   \centering
   \includegraphics[width=0.70\textwidth]{Cap4/Figuras/SlotTypes.png}
   \caption{Definición de slots para las declaraciones de una skill.}
@@ -586,8 +586,8 @@ Es importante considerar que las frases que contienen acrónimos, se deben defin
 
 Al momento de crear un slot, cabe la posibilidad de agregarle sinónimos y un identificador, tal como se muestra en la figura \ref{fig:410}. Los sinónimos pueden ser usados como alternativas al valor original de un elemento de la lista de valores.
 
-% \begin{figure}[h]
-\begin{figure}
+\begin{figure}[H]
+% \begin{figure}
   \centering
   \includegraphics[width=0.70\textwidth]{Cap4/Figuras/SlotTypesCreation.png}
   \caption{Ejemplo de sinónimos de un slot.}
@@ -608,8 +608,8 @@ La función lambda que se hospeda en la consola de desarrollo de Amazon, se encu
 
 Está función se encuentra predefinida en la sección de código, tal como se muestra en la figura \ref{fig:411}.
 
-% \begin{figure}[h]
-\begin{figure}
+\begin{figure}[H]
+% \begin{figure}
   \centering
   \includegraphics[width=0.70\textwidth]{Cap4/Figuras/Funcionlambda.png}
   \caption{Declaración de la función Lambda de una skill.}
@@ -748,8 +748,8 @@ Finalmente, Amazon (2022m) señala que el simulador de Alexa provee un sistema d
 
 El simulador de Alexa se encuentra en la sección de pruebas de la skill, tal como se muestra en la figura \ref{fig:412}.
 
-% \begin{figure}[h]
-\begin{figure}
+\begin{figure}[H]
+% \begin{figure}
   \centering
   \includegraphics[width=0.70\textwidth]{Cap4/Figuras/Simulador.png}
   \caption{Simulador de Alexa para las pruebas de una skill.}
@@ -762,6 +762,10 @@ El simulador de Alexa se encuentra en la sección de pruebas de la skill, tal co
 
 \section{Análisis del problema}
 \label{AnalisisProblemacapIV}
+
+El análisis del problema es una etapa fundamental para identificar las oportunidades de mejora que pueden considerarse para atacar un problema de una forma efectiva, así como el desarrollo de una solución que satisfaga las necesidades del usuario, en este análisis, basados en el diseño centrado en el usuario.
+
+A continuación se presenta una descripción que detalla la identificación de los principales problemas presentados durante la búsqueda e investigación de información, así como las oportunidades de mejora encontradas en cada paso del Modelo Gavilán.
 
 %------------------------------------------------------------
 %	Identificación del problema
@@ -821,7 +825,7 @@ Una de las actividades que realizaron algunos profesores como parte del Diplomad
 
 A continuación se muestra la tabla \ref{tab:t42} con la comparación entre los pasos del Modelo Gavilán y los pasos que siguen los alumnos, según los resultados de los profesores del Diplomado Internacional de Innovación en la Docencia Universitaria y los resultados concluidos con el análisis con los alumnos de licenciatura.
 
-\begin{table}
+\begin{table}[H]
   \begin{center}
     \begin{tabular}{ | p{2cm} | p{7cm} | p{7cm} | }
       \hline
@@ -947,10 +951,10 @@ Cuando Francisco realiza una investigación, consulta la información en Interne
 
 Algunos intereses de Francisco son las películas, por lo que disfruta de ir al cine acompañado de sus amigos. Otro de sus intereses más relevantes es salir a fiestas y conocer gente nueva con quien pueda charlar.
 
-% \begin{figure}[h]
-\begin{figure}
+\begin{figure}[H]
+% \begin{figure}
   \centering
-  \includegraphics[width=0.70\textwidth]{Cap4/Figuras/Prepa.png}
+  \includegraphics[width=0.60\textwidth]{Cap4/Figuras/Prepa.png}
   \caption{Modelo Persona de alumnos de bachillerato.}
   \label{fig:413}
 \end{figure}
@@ -967,10 +971,10 @@ Abraham suele utilizar algunas aplicaciones que le permitan tener un hábito de 
 
 Algunos intereses de Abraham son las series de género dramático y suspenso. Por lo general utiliza la plataforma Netflix.
 
-% \begin{figure}[h]
-\begin{figure}
+\begin{figure}[H]
+% \begin{figure}
   \centering
-  \includegraphics[width=0.70\textwidth]{Cap4/Figuras/Lic.png}
+  \includegraphics[width=0.60\textwidth]{Cap4/Figuras/Lic.png}
   \caption{Modelo Persona de alumnos de primeros semestres de licenciatura.}
   \label{fig:414}
 \end{figure}
@@ -986,10 +990,10 @@ Con el fin de facilitar la comprensión de cómo se comportan los usuarios de fo
 
 En cada punto del proceso de investigación de información, se analizan sus acciones, objetivos, pensamientos, emociones y oportunidades. En la figura \ref{fig:415} se muestra el flujo representado por un Customer Journey Map.
 
-% \begin{figure}[h]
-\begin{figure}
+\begin{figure}[H]
+% \begin{figure}
   \centering
-  \includegraphics[width=0.70\textwidth]{Cap4/Figuras/Customer Journey Map Skill.jpg}
+  \includegraphics[width=0.80\textwidth]{Cap4/Figuras/Customer Journey Map Skill.jpg}
   \caption{Customer Journey Map del proceso de búsqueda de información de los alumnos.}
   \label{fig:415}
 \end{figure}
@@ -1098,46 +1102,46 @@ Antes de comenzar con la implementación, se creó un storyboard para visualizar
 
 \begin{itemize}
   \item \textbf{Definición del problema de información.} El alumno se muestra frustrado por comenzar una investigación, en este caso, sobre la fotosíntesis. La skill provee un listado de preguntas sugeridas para seleccionar una pregunta inicial y comenzar con la investigación. Este proceso se puede visualizar en la figura \ref{fig:416}.
-  % \begin{figure}[h]
-  \begin{figure}
+  \begin{figure}[H]
+  % \begin{figure}
     \centering
-    \includegraphics[width=0.70\textwidth]{Cap4/Figuras/01.png}
+    \includegraphics[width=0.40\textwidth]{Cap4/Figuras/01.png}
     \caption{Storyboard, definición del problema de información.}
     \label{fig:416}
   \end{figure}
   \item \textbf{Búsqueda de fuentes de información.} Durante la búsqueda de fuentes de información, se sugieren una serie de fuentes que contienen información relacionada a la pregunta inicial. El usuario analiza las fuentes de información y selecciona la que considera más adecuada. Este proceso se puede consultar en la figura \ref{fig:417}.
-  % \begin{figure}[h]
-  \begin{figure}
+  \begin{figure}[H]
+  % \begin{figure}
     \centering
-    \includegraphics[width=0.70\textwidth]{Cap4/Figuras/02.png}
+    \includegraphics[width=0.40\textwidth]{Cap4/Figuras/02.png}
     \caption{Storyboard, búsqueda de fuentes de información.}
     \label{fig:417}
   \end{figure}
   \item \textbf{Evaluación de las fuentes de información.} Cuando se presenta la información extraída de la fuente seleccionada, el usuario analiza el contenido y determina si es útil para la investigación. En caso de ser útil, el usuario tiene la posibilidad de almacenar el fragmento de información. Este paso se puede visualizar en la figura \ref{fig:418}.
-  \begin{figure}
+  \begin{figure}[H]
     \centering
-    \includegraphics[width=0.70\textwidth]{Cap4/Figuras/03.png}
+    \includegraphics[width=0.40\textwidth]{Cap4/Figuras/03.png}
     \caption{Storyboard, evaluación de las fuentes de información.}
     \label{fig:418}
   \end{figure}
   \item \textbf{Análisis de la información.} El usuario analiza la información y determina si es necesario incluir más datos que sean útiles para la investigación final. El usuario interactúa con la skill de tal forma que puede consultar más contenido en otras fuentes de información y analizar el contenido hasta que considera que la información que ha obtenido es suficiente. Este paso se puede visualizar en la figura \ref{fig:419}.
-  \begin{figure}
+  \begin{figure}[H]
     \centering
-    \includegraphics[width=0.70\textwidth]{Cap4/Figuras/04.png}
+    \includegraphics[width=0.40\textwidth]{Cap4/Figuras/04.png}
     \caption{Storyboard, análisis de la información.}
     \label{fig:419}
   \end{figure}
   \item \textbf{Sintetizar la información.} La skill provee una serie de recomendaciones para incluir durante la síntesis de la investigación, tal como las fuentes de información consultadas. Además, aporta un mecanismo de recordatorios para la entrega de una investigación. Este paso se puede visualizar en la figura \ref{fig:420}.
-  \begin{figure}
+  \begin{figure}[H]
     \centering
-    \includegraphics[width=0.70\textwidth]{Cap4/Figuras/05.png}
+    \includegraphics[width=0.40\textwidth]{Cap4/Figuras/05.png}
     \caption{Storyboard, sintetizar la información.}
     \label{fig:420}
   \end{figure}
   \item \textbf{Socializar información.} Finalmente, se dice toda la información recopilada durante el manejo de la skill. Además, la skill proporciona una serie de estrategias para compartir la información y se pueda elaborar un producto final. Este paso se puede visualizar en la figura \ref{fig:421}.
-  \begin{figure}
+  \begin{figure}[H]
     \centering
-    \includegraphics[width=0.70\textwidth]{Cap4/Figuras/06.png}
+    \includegraphics[width=0.40\textwidth]{Cap4/Figuras/06.png}
     \caption{Storyboard, socializar la información.}
     \label{fig:421}
   \end{figure}
@@ -1177,9 +1181,9 @@ El diagrama de navegación del Buscador Gavilán se divide en cinco secciones pr
 
 A continuación, se presenta el diagrama de navegación general de la skill en la figura \ref{fig:422}, donde los diálogos en azul corresponden a la interacción del usuario, los diálogos en verde representan las respuestas de la skill y los apartados en blanco corresponde al inicio y término de ejecución de la skill.
 
-\begin{figure}
+\begin{figure}[H]
   \centering
-  \includegraphics[width=0.70\textwidth]{Cap4/Figuras/DiagramaDeNavegación.png}
+  \includegraphics[width=0.90\textwidth]{Cap4/Figuras/DiagramaDeNavegación.png}
   \caption{Storyboard, socializar la información.}
   \label{fig:422}
 \end{figure}
@@ -1193,9 +1197,9 @@ A continuación, se presenta el diagrama de navegación general de la skill en l
 
 Dado el análisis del problema, el análisis del usuario y las herramientas proporcionadas en la etapa de diseño, se implementó una skill llamada Buscador Gavilán, que tiene como objetivo abordar el problema encontrado en el análisis del problema. El logo de la skill se presenta en la figura \ref{fig:423}.
 
-\begin{figure}
+\begin{figure}[H]
   \centering
-  \includegraphics[width=0.70\textwidth]{Cap4/Figuras/LogoSkill.png}
+  \includegraphics[width=0.40\textwidth]{Cap4/Figuras/LogoSkill.png}
   \caption{Logo del Buscador Gavilán.}
   \label{fig:423}
 \end{figure}
@@ -1736,7 +1740,7 @@ El segundo reto fue adaptar la forma de aplicar la evaluación a una modalidad v
 
 En la figura \ref{fig:424} se muestra una de las evaluaciones con los usuarios en las que se encuentran los cuatro dispositivos mencionados anteriormente.
 
-\begin{figure}
+\begin{figure}[H]
   \centering
   \includegraphics[width=0.70\textwidth]{Cap4/Figuras/Pruebas usuario 1.png}
   \caption{Evaluación de la skill Buscador Gavilán con un usuario.}
@@ -1784,7 +1788,7 @@ A continuación se presentan los resultados más relevantes del cuestionario de 
   \item Todos los usuarios saben qué es un asistente basado en voz. Los asistentes por voz más usados son Google Assistant y Siri, con un 80\%, seguido de Alexa con un 60\%.
   \item A pesar de saber qué son los asistentes basados en voz, sólo el 80\% de los usuarios ha utilizado alguno.
   \item Las funcionalidades más usadas al utilizar un asistente basado en voz se muestran a continuación en la figura \ref{fig:425}.
-  \begin{figure}
+  \begin{figure}[H]
     \centering
     \includegraphics[width=0.70\textwidth]{Cap4/Figuras/Funcionalidades más usadas.png}
     \caption{Funcionalidades más usadas al utilizar un asistente basado en voz.}
@@ -1804,7 +1808,7 @@ A continuación se presentan los resultados más relevantes del cuestionario de 
 
 En la tabla siguiente se muestran los resultados de las actividades de la prueba en la tabla \ref{tab:t43}.
 
-\begin{table}
+\begin{table}[H]
   \begin{center}
     \begin{tabular}{ | p{7cm} | p{3cm} | p{3cm} | p{3cm} | }
       \hline
@@ -1829,7 +1833,7 @@ En la tabla siguiente se muestran los resultados de las actividades de la prueba
 
 Los resultados obtenidos en las actividades de la prueba se comparan con las hipótesis de cada una de las tareas, en las que se define por cada una la hipótesis, la acción a desarrollar, el tiempo estimado para realizar la tarea y el resultado de la prueba, en donde se define si se cumplió satisfactoriamente o no la hipótesis. Estos resultaos se muestran en la tabla \ref{tab:t44}
 
-\begin{table}
+\begin{table}[H]
   \begin{center}
     \begin{tabular}{ | p{3cm} | p{3cm} | p{3cm} | p{2cm} | p{4cm} | }
       \hline
@@ -1844,7 +1848,7 @@ Los resultados obtenidos en las actividades de la prueba se comparan con las hip
   \end{center}
 \end{table}
 
-\begin{table}
+\begin{table}[H]
   \begin{center}
     \begin{tabular}{ | p{3cm} | p{3cm} | p{3cm} | p{2cm} | p{4cm} | }
       \hline
@@ -1859,7 +1863,7 @@ Los resultados obtenidos en las actividades de la prueba se comparan con las hip
   \end{center}
 \end{table}
 
-\begin{table}
+\begin{table}[H]
   \begin{center}
     \begin{tabular}{ | p{3cm} | p{3cm} | p{3cm} | p{2cm} | p{4cm} | }
       \hline
@@ -1883,7 +1887,7 @@ Los resultados de usabilidad son tomados para aplicar los pasos definidos en el 
 
 Realizando el cálculo mencionado anteriormente, se obtuvieron los siguientes resultados por usuarios, mostrado en la tabla \ref{tab:t45}.
 
-\begin{table}
+\begin{table}[H]
   \begin{center}
     \begin{tabular}{ | p{9cm} | p{1cm} | p{1cm} | p{1cm} | p{1cm} | p{1cm} | }
       \hline
@@ -1927,7 +1931,7 @@ Se presentan los resultados en los que se muestra mayor tendencia de los reactiv
 
 En una escala de 1 (aburrida) a 9 (estimulante), la skill tiende a ser estimulante. Resultados mostrados en la figura \ref{fig:426}.
 
-\begin{figure}
+\begin{figure}[H]
   \centering
   \includegraphics[width=0.70\textwidth]{Cap4/Figuras/PercepciónSubjetiva1.png}
   \caption{Resultados de percepción subjetiva 1.}
@@ -1936,7 +1940,7 @@ En una escala de 1 (aburrida) a 9 (estimulante), la skill tiende a ser estimulan
 
 En una escala de 1 (difícil) a 9 (fácil) para recordar los nombres y funcionalidades de la skill, esta tiende a ser fácil de recordar. Resultados mostrados en la figura \ref{fig:427}.
 
-\begin{figure}
+\begin{figure}[H]
   \centering
   \includegraphics[width=0.70\textwidth]{Cap4/Figuras/PercepciónSubjetiva2.png}
   \caption{Resultados de percepción subjetiva 2.}
@@ -1945,7 +1949,7 @@ En una escala de 1 (difícil) a 9 (fácil) para recordar los nombres y funcional
 
 En una escala de 1 (inadecuada) a 9 (adecuada), la cantidad de ayuda ofrecida por la skill tiende a ser adecuada. Resultados mostrados en la figura \ref{fig:428}.
 
-\begin{figure}
+\begin{figure}[H]
   \centering
   \includegraphics[width=0.70\textwidth]{Cap4/Figuras/PercepciónSubjetiva3.png}
   \caption{Resultados de percepción subjetiva 3.}
@@ -1954,7 +1958,7 @@ En una escala de 1 (inadecuada) a 9 (adecuada), la cantidad de ayuda ofrecida po
 
 En una escala de 1 (confusos) a 9 (claros), los mensajes de las instrucciones sobre las actividades que puede realizar una skill tienden a ser claros. Resultados mostrados en la figura \ref{fig:429}.
 
-\begin{figure}
+\begin{figure}[H]
   \centering
   \includegraphics[width=0.70\textwidth]{Cap4/Figuras/PercepciónSubjetiva4.png}
   \caption{Resultados de percepción subjetiva 4.}
@@ -1963,7 +1967,7 @@ En una escala de 1 (confusos) a 9 (claros), los mensajes de las instrucciones so
 
 En una escala de 1 (confusos) a 9 (claros), los mensajes de error tienden a ser claros. Resultados mostrados en la figura \ref{fig:430}.
 
-\begin{figure}
+\begin{figure}[H]
   \centering
   \includegraphics[width=0.70\textwidth]{Cap4/Figuras/PercepciónSubjetiva5.png}
   \caption{Resultados de percepción subjetiva 5.}
@@ -1972,7 +1976,7 @@ En una escala de 1 (confusos) a 9 (claros), los mensajes de error tienden a ser 
 
 En una escala de 1 (poco) a 9 (mucho), la skill tiende a ser demasiado innovadora. Resultados mostrados en la figura \ref{fig:431}.
 
-\begin{figure}
+\begin{figure}[H]
   \centering
   \includegraphics[width=0.70\textwidth]{Cap4/Figuras/PercepciónSubjetiva6.png}
   \caption{Resultados de percepción subjetiva 6.}
